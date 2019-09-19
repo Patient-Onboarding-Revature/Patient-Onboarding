@@ -1,8 +1,7 @@
 pipeline {
     agent any
     environment {
-            PROJECT_ID = 'project-2-251819'
-            CLUSTER_NAME = 'jenkins-cd'
+            PROJECT_ID = 'p3-patient-onboarding'
             ZONE = 'us-central1-a'
             DATABASE_NAME = credentials('database-name')
             JDBC_SCHEMA = credentials('jdbc-schema')
@@ -19,31 +18,15 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                script {
-                    withCredentials([file(credentialsId: 'gcr-credentials-file', variable: 'GC_KEY')]) {
-                        sh('gcloud auth activate-service-account --key-file=${GC_KEY}')
-                        echo 'Docker Build Image'
-                        sh('docker build -t gcr.io/${PROJECT_ID}/go-fund-you:productionlatest -f ./devops/Dockerfile --build-arg DATABASE_NAME=${DATABASE_NAME} --build-arg JDBC_SCHEMA=${JDBC_SCHEMA} --build-arg JDBC_URL=${JDBC_URL} --build-arg JDBC_USERNAME=${JDBC_USERNAME} --build-arg JDBC_PASSWORD=${JDBC_PASSWORD} .')
-                        echo 'Docker Push Image'
-                        sh('gcloud docker -- push gcr.io/${PROJECT_ID}/go-fund-you:productionlatest')
-                    }
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
-                    sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
-                    echo 'Deploying to Kubernetes'
-                    sh('gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${ZONE}')
-                    sh('kubectl delete pods -l app=gfy-deployment')
-                    // sh('kubectl set image deployments/gfy-deployment go-fund-you=gcr.io/${PROJECT_ID}/go-fund-you:productionlatest')
-                }
+                sh 'gcloud auth configure-docker'
+                sh 'docker build -t gcr.io/gcplabzamerman/test-flask-server:latest .'
+                sh 'docker push gcr.io/gcplabzamerman/test-flask-server:latest'
             }
         }
         stage('Clean Workspace') {
             steps {
-                cleanWs()
+                sh 'docker image prune -f'
+                cleanWs(deleteDirs:true)
             }
         }
     }
