@@ -1,4 +1,4 @@
-FROM nimmis/java-centos:openjdk-8-jdk
+FROM 8.5.45-jdk8-openjdk
 
 ARG DATABASE_NAME
 ENV DATABASE_NAME=${DATABASE_NAME}
