@@ -1,21 +1,6 @@
 pipeline {
     agent any
-    environment {
-            PROJECT_ID = 'p3-patient-onboarding'
-            ZONE = 'us-central1-a'
-            DATABASE_NAME = credentials('database-name')
-            JDBC_SCHEMA = credentials('jdbc-schema')
-            JDBC_URL = credentials('jdbc-url')
-            JDBC_USERNAME = credentials('jdbc-username')
-            JDBC_PASSWORD = credentials('jdbc-password')
-    }
     stages {
-        stage('Maven Build') {
-            steps {
-                echo 'Maven Build'
-                sh 'mvn install'
-            }
-        }
         stage('Build Image') {
             steps {
                 sh 'gcloud auth configure-docker'
