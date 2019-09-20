@@ -9,7 +9,7 @@ pipeline {
                 sh 'mvn install'
             }
         }*/
-        stage('Build Image') {
+        stage('Build Docker Image') {
             when {
 				branch 'master'
 			}
@@ -19,20 +19,19 @@ pipeline {
                 sh 'docker push gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest'
             }
         }
-        /*
-        stage('Deploy') {
+        stage('Deploy to Kubernetes') {
 			when {
 				branch 'master'
 			}
             steps {
-                withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
-                    sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
-                    echo 'Deploying to Kubernetes'
-                    sh('gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${ZONE}')
-                    sh('kubectl delete pods -l app=gfy-deployment')
+                withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
+                    sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
+                    sh('gcloud container clusters get-credentials uat-cluster --zone us-central1-a')
+                    sh('kubectl delete pods -l app=tomcat-server')
                 }
             }
         }
+        /*
         // Angular
         stage('Build Web Page') {
             when {
