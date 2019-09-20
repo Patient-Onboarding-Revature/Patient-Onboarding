@@ -4,8 +4,8 @@ pipeline {
         stage('Build Image') {
             steps {
                 sh 'gcloud auth configure-docker'
-                sh 'docker build -f devops/Dockerfile -t gcr.io/gcplabzamerman/test-flask-server:latest .'
-                sh 'docker push gcr.io/gcplabzamerman/test-flask-server:latest'
+                sh 'docker build -f devops/Dockerfile -t gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest .'
+                sh 'docker push gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest'
             }
         }
         stage('Clean Workspace') {
