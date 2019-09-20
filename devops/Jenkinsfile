@@ -1,13 +1,60 @@
 pipeline {
     agent any
+
+    // Maven set up
     stages {
+        /*
+        stage('Maven Build') {
+            steps {
+                sh 'mvn install'
+            }
+        }*/
         stage('Build Image') {
+            when {
+				branch 'master'
+			}
             steps {
                 sh 'gcloud auth configure-docker'
                 sh 'docker build -f devops/Dockerfile -t gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest .'
                 sh 'docker push gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest'
             }
         }
+        /*
+        stage('Deploy') {
+			when {
+				branch 'master'
+			}
+            steps {
+                withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
+                    sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
+                    echo 'Deploying to Kubernetes'
+                    sh('gcloud container clusters get-credentials ${CLUSTER_NAME} --zone ${ZONE}')
+                    sh('kubectl delete pods -l app=gfy-deployment')
+                }
+            }
+        }
+        // Angular
+        stage('Build Web Page') {
+            when {
+				branch 'master'
+			}
+            steps {
+                sh 'npm install'
+                sh 'ng build'
+            }
+        }
+        stage('Save to Bucket') {
+			when {
+				branch 'master'
+			}
+            steps {
+                withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
+                    sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
+                    sh('gsutil cp -r ./dist gs://patient-onboarding-test')
+                }
+            }
+        }
+        */
         stage('Clean Workspace') {
             steps {
                 sh 'docker image prune -f'
