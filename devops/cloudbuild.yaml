@@ -1,20 +1,3 @@
 steps:
-# Run tests using maven
-- name: 'maven:3.6.1-jdk-8-slim'
-  entrypoint: 'mvn'
-  args: ['install']
-  secretEnv:
-  - 'DATABASE_NAME'
-  - 'JDBC_SCHEMA'
-  - 'JDBC_URL'
-  - 'JDBC_USERNAME'
-  - 'JDBC_PASSWORD'
-secrets:
-- kmsKeyName: 'projects/project-2-251819/locations/global/keyRings/gfy-keyring/cryptoKeys/gofundyoukey'
-  secretEnv:
-    DATABASE_NAME: 'CiQAvaiAQtZf0MI9nLcCM+PBtusdndmAjfFSYKacNQMi/lamKpsSMQCOIWGr3HQnhhhR6Tug/+Hm3BIFYieDgno86kAXOw73uC51Pm6/fCqntvzbHzjy6wU=' 
-    JDBC_SCHEMA: 'CiQAvaiAQiTB/cudn0Gwc6lnng0R+fkp2G5ZZ6/RfEOwQzeyTwQSMgCOIWGr4jJ+U6Cm9gvkgx8A1wGAoyqocy9HdYo37SQhGWWrmZ1JNd9ZWWQ5aq/01Sio'
-    JDBC_URL: 'CiQAvaiAQoUh+0s5tiJxm8uzFY/mAm+Ec33PwXsuoef1x7wjyOQSNQCOIWGrnPtSEy3TjbdJPDS/RwawvrafbL/AjcrFQFm/t6HZ0zCeq5Og+CGn5keYQcLGktsY' 
-    JDBC_USERNAME: 'CiQAvaiAQqRK/nk9hldtk0RTnxaXQxXFDPsuom0XcDn+HTb5iGsSMQCOIWGr+yIemI9uBTJXsV1PyyII5a2TypQh7mlGKIwM+DeWe+FN2XnbE7AcM8mylSo='
-    JDBC_PASSWORD: 'CiQAvaiAQlb2MY5NWWzdTwB8dfpXRY2DmV4irqAaES8OlJoFrrQSMQCOIWGrvHszSMuupZkRjOkaPte1l1YkBZFxy7Ub1CSs+xnPLqh/ARHSUntmS9qeiwk='
-timeout: "1600s"
+- name: 'alpine:latest'
+  args: ['echo', '"Hello World"']
