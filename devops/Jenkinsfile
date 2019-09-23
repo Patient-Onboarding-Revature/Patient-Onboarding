@@ -24,6 +24,7 @@ pipeline {
             when {
 				branch 'master'
 			}
+
             steps {
                 sh 'gcloud auth configure-docker'
                 sh 'docker build -f ./PatientOnboarding/Dockerfile -t gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest .'
@@ -32,11 +33,12 @@ pipeline {
         }
 
         stage('Deployment') {
+            when {
+                branch 'master'
+            }
+
             parallel {
                 stage('Deploy to Kubernetes') {
-			        when {
-				        branch 'master'
-			        }
                     steps {
                         withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
@@ -47,9 +49,6 @@ pipeline {
                 }
 
                 stage('Deploy to Bucket') {
-			        when {
-				        branch 'master'
-			        }
                     steps {
                         withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
