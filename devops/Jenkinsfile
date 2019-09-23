@@ -51,7 +51,6 @@ pipeline {
                     steps {
                         withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
-                            sh('gsutil -m rm -ar gs://patient-onboarding-test/*')
                             sh('gsutil -m cp -r ./ProjectAngular/dist/ProjectAngular/.* gs://patient-onboarding-test/')
                         }
                     }
