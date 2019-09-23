@@ -13,8 +13,7 @@ pipeline {
                 stage('Angular Build') {
                     steps {
                         sh 'npm install --prefix ./ProjectAngular ./ProjectAngular'
-                        sh 'cd ./ProjectAngular'
-                        sh 'ng build'
+                        sh 'pushd ./ProjectAngular && ng build && popd'
                     }
                 }
             }
