@@ -52,7 +52,7 @@ pipeline {
                         withCredentials([file(credentialsId: 'gke-credentials', variable: 'GKE_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${GKE_KEY}')
                             sh('gsutil -m rm -ar gs://patient-onboarding-test/*')
-                            sh('gsutil -m cp -r ./dist/ProjectAngular/.* gs://patient-onboarding-test/')
+                            sh('gsutil -m cp -r ./ProjectAngular/dist/ProjectAngular/.* gs://patient-onboarding-test/')
                         }
                     }
                 }
