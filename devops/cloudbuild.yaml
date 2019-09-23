@@ -1,3 +1,7 @@
 steps:
-- name: 'alpine:latest'
-  args: ['echo', '"Hello World"']
+- name: maven:3.6.1-jdk-8-slim
+  entrypoint: 'mvn'
+  args: ['-f', 'PatientOnboarding/pom.xml', 'install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/patient-onboarding:testlatest', '-f', './PatientOnboarding/Dockerfile', '.']
+images: ['gcr.io/$PROJECT_ID/patient-onboarding:testlatest']
