@@ -43,7 +43,7 @@ pipeline {
                         withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
                             sh('gcloud container clusters get-credentials uat-cluster --zone us-central1-a')
-                            sh('kubectl set image deployments/tomcat-server patient-onboarding=gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest
+                            sh('kubectl set image deployments/tomcat-server patient-onboarding=gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest')
                         }
                     }
                 }
