@@ -12,7 +12,7 @@ pipeline {
                 
                 stage('Angular Build') {
                     steps {
-                        sh 'npm install ProjectAngular'
+                        sh 'npm install ./ProjectAngular/package.json'
                         sh 'cd ./ProjectAngular'
                         sh 'ng build'
                     }
