@@ -26,4 +26,13 @@ public class RaceDao {
 		return races;
 	}
 	
+	public static Race select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		Race race = (Race) ses.get(Race.class, id);
+		
+		return race;
+		
+	}
+	
 }

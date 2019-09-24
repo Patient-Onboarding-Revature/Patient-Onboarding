@@ -26,4 +26,13 @@ public class SalutationDao {
 		return salutations;
 	}
 	
+	public static Salutation select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		Salutation sal = (Salutation) ses.get(Salutation.class, id);
+		
+		return sal;
+		
+	}
+	
 }

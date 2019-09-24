@@ -2,8 +2,6 @@ package com.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,7 +11,6 @@ public class MaritalStatus {
 	
 	@Id
 	@Column(name="marital_id")
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int Id;
 	
 	@Column(name="marital_status", unique=true)

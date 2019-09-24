@@ -26,4 +26,13 @@ public class SexDao {
 		return sexes;
 	}
 	
+	public static Sex select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		Sex sex = (Sex) ses.get(Sex.class, id);
+		
+		return sex;
+		
+	}
+	
 }

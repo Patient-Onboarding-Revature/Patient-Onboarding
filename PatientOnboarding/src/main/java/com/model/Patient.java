@@ -1,5 +1,7 @@
 package com.model;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -73,6 +77,29 @@ public class Patient {
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="sex", nullable=false)
 	private Sex sex;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Hospital> hospitals;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Insurance> insurance;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Medications> medications;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private EmergencyContact emergencyContact;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="user_role")
+	private UserRole role;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="health_record")
+	private HealthRecord record;
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Doctor> doctors;
 
 	public int getId() {
 		return Id;
@@ -192,6 +219,30 @@ public class Patient {
 
 	public void setSex(Sex sex) {
 		this.sex = sex;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Hospital> getHospitals() {
+		return hospitals;
+	}
+
+	public void setHospitals(List<Hospital> hospitals) {
+		this.hospitals = hospitals;
 	}
 
 	public Patient(int id, String firstName, char middleInit, String lastName, String username, String password,
