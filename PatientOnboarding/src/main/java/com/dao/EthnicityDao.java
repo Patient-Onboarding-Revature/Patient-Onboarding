@@ -26,4 +26,13 @@ public class EthnicityDao {
 		return ethnicities;
 	}
 	
+	public static Ethnicity select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		Ethnicity eth = (Ethnicity) ses.get(Ethnicity.class, id);
+		
+		return eth;
+		
+	}
+	
 }

@@ -26,4 +26,13 @@ public class MaritalStatusDao {
 		return marital_status;
 	}
 	
+	public static MaritalStatus select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		MaritalStatus ms = (MaritalStatus) ses.get(MaritalStatus.class, id);
+		
+		return ms;
+		
+	}
+	
 }

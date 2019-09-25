@@ -4,10 +4,6 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<!-- JDBC STUFF -->
-		<!-- <property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">defaultpassword</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://104.197.137.176:5432/postgres</property> -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 			
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
@@ -22,5 +18,15 @@
 		<mapping class="com.model.Salutation"/>
 		<mapping class="com.model.Sex"/>
 		<mapping class="com.model.Suffix"/>
+		<mapping class="com.model.Hospital"/>
+		<mapping class="com.model.Insurance"/>
+		<mapping class="com.model.InsuranceName"/>
+		<mapping class="com.model.Medications"/>
+		<mapping class="com.model.EmergencyContact"/>
+		<mapping class="com.model.UserRole"/>
+		<mapping class="com.model.HealthRecord"/>
+		<mapping class="com.model.Frequency"/>
+		<mapping class="com.model.Doctor"/>
+		<mapping class="com.model.Admin"/>
 	</session-factory>
 </hibernate-configuration>

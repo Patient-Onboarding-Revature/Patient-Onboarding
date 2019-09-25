@@ -26,4 +26,13 @@ public class SuffixDao {
 		return suffixes;
 	}
 	
+	public static Suffix select(int id) {
+		
+		Session ses=HibernateUtil.getSession();
+		Suffix suff = (Suffix) ses.get(Suffix.class, id);
+		
+		return suff;
+		
+	}
+	
 }
