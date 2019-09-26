@@ -1,0 +1,22 @@
+.bio {
+    text-align: justify;
+    font-size: 17px;
+    background-color: hsla(0,0%,100%,.87);
+    padding: 20px 20px 5px;
+    box-shadow: 0 0 10px -3px #000;
+    color: #000;
+    font-weight: 200;
+    margin-top: 150px;
+}
+
+.maininfo {
+    margin-top: 30px;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-image: url("https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+
+.modal-dialog {
+    max-width: 940px;
+    margin: 1.75rem auto;
+}
