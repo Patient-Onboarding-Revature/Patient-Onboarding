@@ -1,0 +1,31 @@
+package com.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="emergency_contact")
+public class EmergencyContact {
+
+	@Id
+	@Column(name="contact_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int Id;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+	
+	@Column(name="contact_number")
+	private long num;
+	
+	@Column(name="relationship to patient")
+	private String relation;
+	
+}

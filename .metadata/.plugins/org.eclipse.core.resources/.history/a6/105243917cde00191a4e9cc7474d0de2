@@ -1,0 +1,99 @@
+package com;
+
+import com.dao.EthnicityDao;
+import com.dao.MaritalStatusDao;
+import com.dao.PatientDao;
+import com.dao.RaceDao;
+import com.dao.SalutationDao;
+import com.dao.SexDao;
+import com.dao.SuffixDao;
+import com.model.Ethnicity;
+import com.model.MaritalStatus;
+import com.model.Patient;
+import com.model.Race;
+import com.model.Salutation;
+import com.model.Sex;
+import com.model.Suffix;
+
+public class Driver {
+
+	public static void main(String[] args) {
+		
+		insertInitialValues();
+		
+	}
+
+	private static void insertInitialValues() {
+		
+		Ethnicity e1 = new Ethnicity(1,"Hispanic or Latino or Spanish Origin");
+		Ethnicity e2 = new Ethnicity(2,"Not Hispanic or Latino or Spanish Origin");
+		
+		EthnicityDao.insert(e1);
+		EthnicityDao.insert(e2);
+		
+		Race r1 = new Race(1,"American Indian or Alaska Native");
+		Race r2 = new Race(2,"Asian");
+		Race r3 = new Race(3,"Black or African American");
+		Race r4 = new Race(4,"Native Hawaiian or Other Pacific Islander");
+		Race r5 = new Race(5,"White");
+		
+		RaceDao.insert(r1);
+		RaceDao.insert(r2);
+		RaceDao.insert(r3);
+		RaceDao.insert(r4);
+		RaceDao.insert(r5);
+		
+		MaritalStatus m1 = new MaritalStatus(1,"Married");
+		MaritalStatus m2 = new MaritalStatus(2,"Widowed");
+		MaritalStatus m3 = new MaritalStatus(3,"Divorced");
+		MaritalStatus m4 = new MaritalStatus(4,"Separated");
+		MaritalStatus m5 = new MaritalStatus(5,"Never Married");
+		
+		MaritalStatusDao.insert(m1);
+		MaritalStatusDao.insert(m2);
+		MaritalStatusDao.insert(m3);
+		MaritalStatusDao.insert(m4);
+		MaritalStatusDao.insert(m5);
+		
+		Sex s1 = new Sex(1,"Female");
+		Sex s2 = new Sex(2,"Male");
+		Sex s3 = new Sex(3,"Other");
+		
+		SexDao.insert(s1);
+		SexDao.insert(s2);
+		SexDao.insert(s3);
+		
+		Salutation l1 = new Salutation(1,"Mr.");
+		Salutation l2 = new Salutation(2,"Mrs.");
+		Salutation l3 = new Salutation(3,"Miss.");
+		Salutation l4 = new Salutation(4,"Ms.");
+		Salutation l5 = new Salutation(5,"Dr.");
+		
+		SalutationDao.insert(l1);
+		SalutationDao.insert(l2);
+		SalutationDao.insert(l3);
+		SalutationDao.insert(l4);
+		SalutationDao.insert(l5);
+		
+		Suffix f1 = new Suffix(1,"Sr.");
+		Suffix f2 = new Suffix(2,"Jr.");
+		
+		SuffixDao.insert(f1);
+		SuffixDao.insert(f2);
+		
+//		Salutation s = new Salutation ("Mr.");
+//		Suffix sx = new Suffix("Sr.");
+//		MaritalStatus m = new MaritalStatus("Married");
+		Ethnicity e = EthnicityDao.select(1);
+		System.out.println(e);
+//		Race r = new Race("Asian");
+//		Sex sex = new Sex("Male");
+		
+//		Patient p1 = new Patient("Sparta", 'S', "Spartans", "sparta", "pass", 1, 1, "This is sparta", "state of sparta",
+//				28791, 555_555_5555L, "sparta@sparta.com", 1, 2, 2, 2);
+//		
+//		PatientDao.insert(p1);
+		
+	}
+	
+}

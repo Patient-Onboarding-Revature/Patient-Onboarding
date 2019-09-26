@@ -1,0 +1,395 @@
+package com.model;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="patient")
+public class Patient {
+
+	@Id
+	@Column(name="patient_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int Id;
+	
+	@Column(name="first_name", nullable=false)
+	private String firstName;
+	
+	@Column(name="middle_initial")
+	private char middleInit;
+	
+	@Column(name="last_name", nullable=false)
+	private String lastName;
+	
+	@Column(name="username", nullable=false)
+	private String username;
+	
+	@Column(name="password", nullable=false)
+	private String password;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="salutation")
+	private Salutation salutation;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="suffix")
+	private Suffix suffix;
+	
+	@Column(name="street_address", nullable=false)
+	private String address;
+	
+	@Column(name="state", nullable=false)
+	private String state;
+	
+	@Column(name="zip_code", nullable=false)
+	private int zip;
+	
+	@Column(name="contact_number", nullable=false)
+	private long number;
+	
+	@Column(name="email", unique=true, nullable=false)
+	private String email;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="marital_status", nullable=false)
+	private MaritalStatus status;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="ethnicity", nullable=false)
+	private Ethnicity ethnicity;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="race", nullable=false)
+	private Race race;
+	
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="sex", nullable=false)
+	private Sex sex;
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public char getMiddleInit() {
+		return middleInit;
+	}
+
+	public void setMiddleInit(char middleInit) {
+		this.middleInit = middleInit;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Salutation getSalutation() {
+		return salutation;
+	}
+
+	public void setSalutation(Salutation salutation) {
+		this.salutation = salutation;
+	}
+
+	public Suffix getSuffix() {
+		return suffix;
+	}
+
+	public void setSuffix(Suffix suffix) {
+		this.suffix = suffix;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getZip() {
+		return zip;
+	}
+
+	public void setZip(int zip) {
+		this.zip = zip;
+	}
+
+	public long getNumber() {
+		return number;
+	}
+
+	public void setNumber(long number) {
+		this.number = number;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public MaritalStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(MaritalStatus status) {
+		this.status = status;
+	}
+
+	public Ethnicity getEthnicity() {
+		return ethnicity;
+	}
+
+	public void setEthnicity(Ethnicity ethnicity) {
+		this.ethnicity = ethnicity;
+	}
+
+	public Race getRace() {
+		return race;
+	}
+
+	public void setRace(Race race) {
+		this.race = race;
+	}
+
+	public Sex getSex() {
+		return sex;
+	}
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getSalInt() {
+		return salInt;
+	}
+
+	public void setSalInt(int salInt) {
+		this.salInt = salInt;
+	}
+
+	public int getSuffInt() {
+		return suffInt;
+	}
+
+	public void setSuffInt(int suffInt) {
+		this.suffInt = suffInt;
+	}
+
+	public int getStatusInt() {
+		return statusInt;
+	}
+
+	public void setStatusInt(int statusInt) {
+		this.statusInt = statusInt;
+	}
+
+	public int getEthInt() {
+		return ethInt;
+	}
+
+	public void setEthInt(int ethInt) {
+		this.ethInt = ethInt;
+	}
+
+	public int getRaceInt() {
+		return raceInt;
+	}
+
+	public void setRaceInt(int raceInt) {
+		this.raceInt = raceInt;
+	}
+
+	public int getSexInt() {
+		return sexInt;
+	}
+
+	public void setSexInt(int sexInt) {
+		this.sexInt = sexInt;
+	}
+
+	public Patient(int id, String firstName, char middleInit, String lastName, String username, String password,
+			Salutation salutation, Suffix suffix, String address, String state, int zip, long number, String email,
+			MaritalStatus status, Ethnicity ethnicity, Race race, Sex sex) {
+		super();
+		Id = id;
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.salutation = salutation;
+		this.suffix = suffix;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.number = number;
+		this.email = email;
+		this.status = status;
+		this.ethnicity = ethnicity;
+		this.race = race;
+		this.sex = sex;
+	}
+
+	public Patient(String firstName, char middleInit, String lastName, String username, String password,
+			Salutation salutation, Suffix suffix, String address, String state, int zip, long number, String email,
+			MaritalStatus status, Ethnicity ethnicity, Race race, Sex sex) {
+		super();
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.salutation = salutation;
+		this.suffix = suffix;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.number = number;
+		this.email = email;
+		this.status = status;
+		this.ethnicity = ethnicity;
+		this.race = race;
+		this.sex = sex;
+	}
+
+	public Patient(int id, String firstName, char middleInit, String lastName, String username, String password,
+			Salutation salutation, int salInt, Suffix suffix, int suffInt, String address, String state, int zip,
+			long number, String email, MaritalStatus status, int statusInt, Ethnicity ethnicity, int ethInt, Race race,
+			int raceInt, Sex sex, int sexInt) {
+		super();
+		Id = id;
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.salutation = salutation;
+		this.salInt = salInt;
+		this.suffix = suffix;
+		this.suffInt = suffInt;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.number = number;
+		this.email = email;
+		this.status = status;
+		this.statusInt = statusInt;
+		this.ethnicity = ethnicity;
+		this.ethInt = ethInt;
+		this.race = race;
+		this.raceInt = raceInt;
+		this.sex = sex;
+		this.sexInt = sexInt;
+	}
+
+	public Patient(int id, String firstName, char middleInit, String lastName, String username, String password,
+			int salInt, int suffInt, String address, String state, int zip, long number, String email, int statusInt,
+			int ethInt, int raceInt, int sexInt) {
+		super();
+		Id = id;
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.salInt = salInt;
+		this.suffInt = suffInt;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.number = number;
+		this.email = email;
+		this.statusInt = statusInt;
+		this.ethInt = ethInt;
+		this.raceInt = raceInt;
+		this.sexInt = sexInt;
+	}
+
+	public Patient(String firstName, char middleInit, String lastName, String username, String password, int salInt,
+			int suffInt, String address, String state, int zip, long number, String email, int statusInt, int ethInt,
+			int raceInt, int sexInt) {
+		super();
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.salInt = salInt;
+		this.suffInt = suffInt;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.number = number;
+		this.email = email;
+		this.statusInt = statusInt;
+		this.ethInt = ethInt;
+		this.raceInt = raceInt;
+		this.sexInt = sexInt;
+	}
+
+	public Patient() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Patient [Id=" + Id + ", firstName=" + firstName + ", middleInit=" + middleInit + ", lastName="
+				+ lastName + ", salutation=" + salutation + ", suffix=" + suffix + ", address=" + address + ", state="
+				+ state + ", zip=" + zip + ", number=" + number + ", email=" + email + ", status=" + status
+				+ ", ethnicity=" + ethnicity + ", race=" + race + ", sex=" + sex + "]";
+	}
+	
+	
+	
+}

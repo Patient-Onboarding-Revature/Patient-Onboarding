@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<!-- JDBC STUFF -->
+		<!-- <property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">defaultpassword</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://104.197.137.176:5432/postgres</property> -->
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+			
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.format_sql">false</property>
+		<property name="hibernate.connection.pool_size">10</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<mapping class="com.model.Ethnicity"/>
+		<mapping class="com.model.MaritalStatus"/>
+		<mapping class="com.model.Patient"/>
+		<mapping class="com.model.Race"/>
+		<mapping class="com.model.Salutation"/>
+		<mapping class="com.model.Sex"/>
+		<mapping class="com.model.Suffix"/>
+	</session-factory>
+</hibernate-configuration>
