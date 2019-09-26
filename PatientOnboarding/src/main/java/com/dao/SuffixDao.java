@@ -2,36 +2,42 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Suffix;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("suffixDao")
 public class SuffixDao {
 
-	public static void insert(Suffix suffix) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(suffix);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public SuffixDao() {}
+	
+	@Autowired
+	public SuffixDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<Suffix> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Suffix> suffixes = ses.createQuery("from suffix", Suffix.class).list();
+	public void insert(Suffix obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Suffix> selectAll() {
+		List<Suffix> list = sf.getCurrentSession().createQuery("from suffix", Suffix.class).list();
 		
-		return suffixes;
+		return list;
 	}
 	
-	public static Suffix select(int id) {
+	public Suffix select(int id) {
 		
-		Session ses=HibernateUtil.getSession();
-		Suffix suff = (Suffix) ses.get(Suffix.class, id);
+		Suffix obj = (Suffix) sf.getCurrentSession().get(Suffix.class, id);
 		
-		return suff;
+		return obj;
 		
 	}
 	

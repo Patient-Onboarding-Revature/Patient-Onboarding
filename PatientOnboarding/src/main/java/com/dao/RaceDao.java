@@ -2,36 +2,42 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Race;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("raceDao")
 public class RaceDao {
 
-	public static void insert(Race race) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(race);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public RaceDao() {}
+	
+	@Autowired
+	public RaceDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<Race> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Race> races = ses.createQuery("from race", Race.class).list();
+	public void insert(Race obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Race> selectAll() {
+		List<Race> list = sf.getCurrentSession().createQuery("from race", Race.class).list();
 		
-		return races;
+		return list;
 	}
 	
-	public static Race select(int id) {
+	public Race select(int id) {
 		
-		Session ses=HibernateUtil.getSession();
-		Race race = (Race) ses.get(Race.class, id);
+		Race obj = (Race) sf.getCurrentSession().get(Race.class, id);
 		
-		return race;
+		return obj;
 		
 	}
 	

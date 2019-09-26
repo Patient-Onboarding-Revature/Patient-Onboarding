@@ -16,4 +16,22 @@ public class Frequency {
 	@Column(name="frequency")
 	private String frequency;
 	
+	public Frequency() {}
+
+	public Frequency(int id, String frequency) {
+		super();
+		Id = id;
+		this.frequency = frequency;
+	}
+
+	public Frequency(String frequency) {
+		super();
+		this.frequency = frequency;
+	}
+
+	@Override
+	public String toString() {
+		return "Frequency [Id=" + Id + ", frequency=" + frequency + "]";
+	}
+	
 }

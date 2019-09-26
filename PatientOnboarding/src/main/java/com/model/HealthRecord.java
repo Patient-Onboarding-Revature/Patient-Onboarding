@@ -94,7 +94,7 @@ public class HealthRecord {
 	@Column(name="drugs", nullable=false)
 	private boolean b17;
 	
-	@Column(name="sexual_active", nullable=false)
+	@Column(name="sexually_active", nullable=false)
 	private boolean b18;
 	
 	@Column(name="exercise_regularly", nullable=false)
@@ -102,5 +102,85 @@ public class HealthRecord {
 	
 	@Column(name="living_will", nullable=false)
 	private boolean b20;
+
+	public HealthRecord(Patient patient, boolean b, boolean b1, boolean b2, boolean b3, boolean b4, boolean b5,
+			boolean b6, boolean b7, boolean b8, boolean b9, boolean b10, boolean b11, boolean b12, boolean b13,
+			Frequency smoke, boolean b14, Frequency chew, boolean b15, Frequency alc, boolean b16, Frequency caff,
+			boolean b17, boolean b18, boolean b19, boolean b20) {
+		super();
+		this.patient = patient;
+		this.b = b;
+		this.b1 = b1;
+		this.b2 = b2;
+		this.b3 = b3;
+		this.b4 = b4;
+		this.b5 = b5;
+		this.b6 = b6;
+		this.b7 = b7;
+		this.b8 = b8;
+		this.b9 = b9;
+		this.b10 = b10;
+		this.b11 = b11;
+		this.b12 = b12;
+		this.b13 = b13;
+		this.smoke = smoke;
+		this.b14 = b14;
+		this.chew = chew;
+		this.b15 = b15;
+		this.alc = alc;
+		this.b16 = b16;
+		this.caff = caff;
+		this.b17 = b17;
+		this.b18 = b18;
+		this.b19 = b19;
+		this.b20 = b20;
+	}
+
+	public HealthRecord(int id, Patient patient, boolean b, boolean b1, boolean b2, boolean b3, boolean b4, boolean b5,
+			boolean b6, boolean b7, boolean b8, boolean b9, boolean b10, boolean b11, boolean b12, boolean b13,
+			Frequency smoke, boolean b14, Frequency chew, boolean b15, Frequency alc, boolean b16, Frequency caff,
+			boolean b17, boolean b18, boolean b19, boolean b20) {
+		super();
+		Id = id;
+		this.patient = patient;
+		this.b = b;
+		this.b1 = b1;
+		this.b2 = b2;
+		this.b3 = b3;
+		this.b4 = b4;
+		this.b5 = b5;
+		this.b6 = b6;
+		this.b7 = b7;
+		this.b8 = b8;
+		this.b9 = b9;
+		this.b10 = b10;
+		this.b11 = b11;
+		this.b12 = b12;
+		this.b13 = b13;
+		this.smoke = smoke;
+		this.b14 = b14;
+		this.chew = chew;
+		this.b15 = b15;
+		this.alc = alc;
+		this.b16 = b16;
+		this.caff = caff;
+		this.b17 = b17;
+		this.b18 = b18;
+		this.b19 = b19;
+		this.b20 = b20;
+	}
+
+	public HealthRecord() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "HealthRecord [Id=" + Id + ", patient=" + patient + ", b=" + b + ", b1=" + b1 + ", b2=" + b2 + ", b3="
+				+ b3 + ", b4=" + b4 + ", b5=" + b5 + ", b6=" + b6 + ", b7=" + b7 + ", b8=" + b8 + ", b9=" + b9
+				+ ", b10=" + b10 + ", b11=" + b11 + ", b12=" + b12 + ", b13=" + b13 + ", smoke=" + smoke + ", b14="
+				+ b14 + ", chew=" + chew + ", b15=" + b15 + ", alc=" + alc + ", b16=" + b16 + ", caff=" + caff
+				+ ", b17=" + b17 + ", b18=" + b18 + ", b19=" + b19 + ", b20=" + b20 + "]";
+	}
 	
 }

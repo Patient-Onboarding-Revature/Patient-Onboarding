@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"hospitals","insurance","medications","doctors"})
 @Entity
 @Table(name="patient")
 public class Patient {
@@ -28,7 +31,7 @@ public class Patient {
 	private String firstName;
 	
 	@Column(name="middle_initial")
-	private char middleInit;
+	private Character middleInit;
 	
 	@Column(name="last_name", nullable=false)
 	private String lastName;
@@ -47,35 +50,35 @@ public class Patient {
 	@JoinColumn(name="suffix")
 	private Suffix suffix;
 	
-	@Column(name="street_address", nullable=false)
+	@Column(name="street_address")
 	private String address;
 	
-	@Column(name="state", nullable=false)
+	@Column(name="state")
 	private String state;
 	
-	@Column(name="zip_code", nullable=false)
-	private int zip;
+	@Column(name="zip_code")
+	private Integer zip;
 	
-	@Column(name="contact_number", nullable=false)
-	private long number;
+	@Column(name="contact_number")
+	private Long number;
 	
-	@Column(name="email", unique=true, nullable=false)
+	@Column(name="email", unique=true)
 	private String email;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="marital_status", nullable=false)
+	@JoinColumn(name="marital_status")
 	private MaritalStatus status;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="ethnicity", nullable=false)
+	@JoinColumn(name="ethnicity")
 	private Ethnicity ethnicity;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="race", nullable=false)
+	@JoinColumn(name="race")
 	private Race race;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="sex", nullable=false)
+	@JoinColumn(name="sex")
 	private Sex sex;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
@@ -245,49 +248,60 @@ public class Patient {
 		this.hospitals = hospitals;
 	}
 
-	public Patient(int id, String firstName, char middleInit, String lastName, String username, String password,
-			Salutation salutation, Suffix suffix, String address, String state, int zip, long number, String email,
-			MaritalStatus status, Ethnicity ethnicity, Race race, Sex sex) {
-		super();
-		Id = id;
-		this.firstName = firstName;
-		this.middleInit = middleInit;
-		this.lastName = lastName;
-		this.username = username;
-		this.password = password;
-		this.salutation = salutation;
-		this.suffix = suffix;
-		this.address = address;
-		this.state = state;
-		this.zip = zip;
-		this.number = number;
-		this.email = email;
-		this.status = status;
-		this.ethnicity = ethnicity;
-		this.race = race;
-		this.sex = sex;
+	public List<Insurance> getInsurance() {
+		return insurance;
 	}
 
-	public Patient(String firstName, char middleInit, String lastName, String username, String password,
-			Salutation salutation, Suffix suffix, String address, String state, int zip, long number, String email,
-			MaritalStatus status, Ethnicity ethnicity, Race race, Sex sex) {
+	public void setInsurance(List<Insurance> insurance) {
+		this.insurance = insurance;
+	}
+
+	public List<Medications> getMedications() {
+		return medications;
+	}
+
+	public void setMedications(List<Medications> medications) {
+		this.medications = medications;
+	}
+
+	public EmergencyContact getEmergencyContact() {
+		return emergencyContact;
+	}
+
+	public void setEmergencyContact(EmergencyContact emergencyContact) {
+		this.emergencyContact = emergencyContact;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
+	}
+
+	public HealthRecord getRecord() {
+		return record;
+	}
+
+	public void setRecord(HealthRecord record) {
+		this.record = record;
+	}
+
+	public List<Doctor> getDoctors() {
+		return doctors;
+	}
+
+	public void setDoctors(List<Doctor> doctors) {
+		this.doctors = doctors;
+	}
+
+	public Patient(String firstName, String lastName, String username, String password) {
 		super();
 		this.firstName = firstName;
-		this.middleInit = middleInit;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.salutation = salutation;
-		this.suffix = suffix;
-		this.address = address;
-		this.state = state;
-		this.zip = zip;
-		this.number = number;
-		this.email = email;
-		this.status = status;
-		this.ethnicity = ethnicity;
-		this.race = race;
-		this.sex = sex;
 	}
 
 	public Patient() {
@@ -297,10 +311,10 @@ public class Patient {
 	@Override
 	public String toString() {
 		return "Patient [Id=" + Id + ", firstName=" + firstName + ", middleInit=" + middleInit + ", lastName="
-				+ lastName + ", salutation=" + salutation + ", suffix=" + suffix + ", address=" + address + ", state="
-				+ state + ", zip=" + zip + ", number=" + number + ", email=" + email + ", status=" + status
-				+ ", ethnicity=" + ethnicity + ", race=" + race + ", sex=" + sex + "]";
+				+ lastName + ", username=" + username + ", password=" + password +", role=" + role +"]";
 	}
+
+	
 	
 	
 	
