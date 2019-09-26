@@ -8,6 +8,9 @@ pipeline {
         DEPLOYMENT = credentials('deployment')
         BUCKET_URL = credentials('bucket-url')
         IMAGE_TAG = credentials('image-tag')
+        DBURL = credentials('database-url')
+        DBUSE = credentials('database-user')
+        DBPASS = credentials('database-password')
     }
 
     stages {
