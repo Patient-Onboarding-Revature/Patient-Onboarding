@@ -2,36 +2,51 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import javax.transaction.Transactional;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.model.Ethnicity;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("ethDao")
 public class EthnicityDao {
 
-	public static void insert(Ethnicity ethnicity) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(ethnicity);
-		
-		tx.commit();
-	}
-
-	public static List<Ethnicity> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Ethnicity> ethnicities = ses.createQuery("from ethnicity", Ethnicity.class).list();
-		
-		return ethnicities;
+	static {
+		try {
+			Class.forName("org.postgresql.Driver");
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public static Ethnicity select(int id) {
+	private SessionFactory sf;
+	
+	public EthnicityDao() {}
+	
+	@Autowired
+	public EthnicityDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
+	}
+
+	public void insert(Ethnicity obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Ethnicity> selectAll() {
+		List<Ethnicity> list = sf.getCurrentSession().createQuery("from ethnicity", Ethnicity.class).list();
 		
-		Session ses=HibernateUtil.getSession();
-		Ethnicity eth = (Ethnicity) ses.get(Ethnicity.class, id);
+		return list;
+	}
+	
+	public Ethnicity select(int id) {
 		
-		return eth;
+		Ethnicity obj = (Ethnicity) sf.getCurrentSession().get(Ethnicity.class, id);
+		
+		return obj;
 		
 	}
 	

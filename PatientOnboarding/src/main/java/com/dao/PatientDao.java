@@ -2,28 +2,51 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Patient;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("patientDao")
 public class PatientDao {
 
-	public static void insert(Patient patient) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(patient);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public PatientDao() {}
+	
+	@Autowired
+	public PatientDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<Patient> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Patient> patients = ses.createQuery("from patient", Patient.class).list();
+	public void insert(Patient obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Patient> selectAll() {
+		List<Patient> list = sf.getCurrentSession().createQuery("from Patient", Patient.class).list();
 		
-		return patients;
+		return list;
+	}
+	
+	public Patient select(int id) {
+		
+		Patient obj = (Patient) sf.getCurrentSession().get(Patient.class, id);
+		
+		return obj;
+		
+	}
+	
+	public Patient selectByUsername(String username) {
+		
+		List<Patient> list = sf.getCurrentSession().createQuery("from Patient where username='"+username+"'", Patient.class).list();
+		
+		return list.get(0);
+		
 	}
 	
 }

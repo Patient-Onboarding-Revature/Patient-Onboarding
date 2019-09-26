@@ -28,5 +28,6 @@
 		<mapping class="com.model.Frequency"/>
 		<mapping class="com.model.Doctor"/>
 		<mapping class="com.model.Admin"/>
+		<mapping class="com.model.Payment"/>
 	</session-factory>
 </hibernate-configuration>

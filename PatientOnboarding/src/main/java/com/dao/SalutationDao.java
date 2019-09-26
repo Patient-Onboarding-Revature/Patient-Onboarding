@@ -2,36 +2,42 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Salutation;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("salutationDao")
 public class SalutationDao {
 
-	public static void insert(Salutation salutation) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(salutation);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public SalutationDao() {}
+	
+	@Autowired
+	public SalutationDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<Salutation> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Salutation> salutations = ses.createQuery("from salutation", Salutation.class).list();
+	public void insert(Salutation obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Salutation> selectAll() {
+		List<Salutation> list = sf.getCurrentSession().createQuery("from salutation", Salutation.class).list();
 		
-		return salutations;
+		return list;
 	}
 	
-	public static Salutation select(int id) {
+	public Salutation select(int id) {
 		
-		Session ses=HibernateUtil.getSession();
-		Salutation sal = (Salutation) ses.get(Salutation.class, id);
+		Salutation obj = (Salutation) sf.getCurrentSession().get(Salutation.class, id);
 		
-		return sal;
+		return obj;
 		
 	}
 	

@@ -2,36 +2,42 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.Sex;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("sexDao")
 public class SexDao {
 
-	public static void insert(Sex sex) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(sex);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public SexDao() {}
+	
+	@Autowired
+	public SexDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<Sex> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<Sex> sexes = ses.createQuery("from sex", Sex.class).list();
+	public void insert(Sex obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<Sex> selectAll() {
+		List<Sex> list = sf.getCurrentSession().createQuery("from sex", Sex.class).list();
 		
-		return sexes;
+		return list;
 	}
 	
-	public static Sex select(int id) {
+	public Sex select(int id) {
 		
-		Session ses=HibernateUtil.getSession();
-		Sex sex = (Sex) ses.get(Sex.class, id);
+		Sex obj = (Sex) sf.getCurrentSession().get(Sex.class, id);
 		
-		return sex;
+		return obj;
 		
 	}
 	

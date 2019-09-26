@@ -32,5 +32,80 @@ public class EmergencyContact {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private Patient patient;
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getNum() {
+		return num;
+	}
+
+	public void setNum(long num) {
+		this.num = num;
+	}
+
+	public String getRelation() {
+		return relation;
+	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+	
+	public EmergencyContact() {}
+
+	public EmergencyContact(int id, String firstName, String lastName, long num, String relation, Patient patient) {
+		super();
+		Id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.num = num;
+		this.relation = relation;
+		this.patient = patient;
+	}
+
+	public EmergencyContact(String firstName, String lastName, long num, String relation, Patient patient) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.num = num;
+		this.relation = relation;
+		this.patient = patient;
+	}
+
+	@Override
+	public String toString() {
+		return "EmergencyContact [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", num=" + num
+				+ ", relation=" + relation + ", patient=" + patient + "]";
+	}
 	
 }

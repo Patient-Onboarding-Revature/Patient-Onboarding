@@ -2,36 +2,42 @@ package com.dao;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.model.MaritalStatus;
-import com.util.HibernateUtil;
 
+@Transactional
+@Repository("MSD")
 public class MaritalStatusDao {
 
-	public static void insert(MaritalStatus marital_status) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = ses.beginTransaction();
-		
-		ses.save(marital_status);
-		
-		tx.commit();
+	private SessionFactory sf;
+	
+	public MaritalStatusDao() {}
+	
+	@Autowired
+	public MaritalStatusDao(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 
-	public static List<MaritalStatus> selectAll() {
-		Session ses=HibernateUtil.getSession();
-		List<MaritalStatus> marital_status = ses.createQuery("from marital_status", MaritalStatus.class).list();
+	public void insert(MaritalStatus obj) {
+		sf.getCurrentSession().save(obj);
+	}
+
+	public List<MaritalStatus> selectAll() {
+		List<MaritalStatus> list = sf.getCurrentSession().createQuery("from marital_status", MaritalStatus.class).list();
 		
-		return marital_status;
+		return list;
 	}
 	
-	public static MaritalStatus select(int id) {
+	public MaritalStatus select(int id) {
 		
-		Session ses=HibernateUtil.getSession();
-		MaritalStatus ms = (MaritalStatus) ses.get(MaritalStatus.class, id);
+		MaritalStatus obj = (MaritalStatus) sf.getCurrentSession().get(MaritalStatus.class, id);
 		
-		return ms;
+		return obj;
 		
 	}
 	

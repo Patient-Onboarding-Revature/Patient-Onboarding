@@ -1,8 +1,8 @@
-package com.util;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+//package com.util;
+//
+//import org.hibernate.Session;
+//import org.hibernate.SessionFactory;
+//import org.hibernate.cfg.Configuration;
 
 /*Hibernate's important objects and interfaces
  * 
@@ -29,30 +29,30 @@ import org.hibernate.cfg.Configuration;
  * Durability- data will persist through issues (like power loss)
  * 
  */
-public class HibernateUtil {
-	
-	private static Session ses;
-	private static Configuration conf=
-			new Configuration().configure("hibernate.cfg.xml");
-
-	static {
-		conf.setProperty("hibernate.connection.username", System.getenv("DBUSE"));
-		conf.setProperty("hibernate.connection.password", System.getenv("DBPASS"));
-		conf.setProperty("hibernate.connection.url", System.getenv("DBURL"));
-	}
-	
-	private static SessionFactory sf= conf.buildSessionFactory();
-	
-	public static Session getSession() {
-		
-		if(ses==null)
-			ses= sf.openSession();
-		return ses;
-	}
-	
-	public static void closeSes() {
-		ses.close();
-		sf.close();
-	}
-
-}
+//public class HibernateUtil {
+//	
+//	private static Session ses;
+//	private static Configuration conf=
+//			new Configuration().configure("hibernate.cfg.xml");
+//
+//	static {
+//		conf.setProperty("hibernate.connection.username", System.getenv("DBUSE"));
+//		conf.setProperty("hibernate.connection.password", System.getenv("DBPASS"));
+//		conf.setProperty("hibernate.connection.url", System.getenv("DBURL"));
+//	}
+//	
+//	private static SessionFactory sf= conf.buildSessionFactory();
+//	
+//	public static Session getSession() {
+//		
+//		if(ses==null)
+//			ses= sf.openSession();
+//		return ses;
+//	}
+//	
+//	public static void closeSes() {
+//		ses.close();
+//		sf.close();
+//	}
+//
+//}
