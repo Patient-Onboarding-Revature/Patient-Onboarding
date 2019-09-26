@@ -1,0 +1,48 @@
+package com.model;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="hospital_practice")
+public class Hospital {
+
+	@Id
+	@Column(name="provider_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int Id;
+	
+	@Column(name="provider_name", nullable=false)
+	private String name;
+	
+	@Column(name="street_address", nullable=false)
+	private String address;
+	
+	@Column(name="state", nullable=false)
+	private String state;
+	
+	@Column(name="zip_code", nullable=false)
+	private int zip;
+	
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="hospitals")
+	private List<Patient> patients;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<InsuranceName> insurances;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Doctor> doctors;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Admin> admins;
+	
+}
