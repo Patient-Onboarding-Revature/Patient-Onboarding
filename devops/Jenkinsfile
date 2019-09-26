@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        PROJECT_ID = credentials('project-id')
+        ZONE = credentials('zone')
+        CLUSTER = credentials('cluster')
+        DEPLOYMENT = credentials('deployment')
+        BUCKET_URL = credentials('bucket-url')
+        IMAGE_TAG = credentials('image-tag')
+    }
+
     stages {
         stage('Build') {
             parallel {
@@ -26,8 +35,8 @@ pipeline {
 
             steps {
                 sh 'gcloud auth configure-docker'
-                sh 'docker build -f ./PatientOnboarding/Dockerfile -t gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest .'
-                sh 'docker push gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest'
+                sh 'docker build -f ./PatientOnboarding/Dockerfile -t gcr.io/$PROJECT_ID/$IMAGE_TAG .'
+                sh 'docker push gcr.io/$PROJECT_ID/$IMAGE_TAG'
             }
         }
 
@@ -41,9 +50,9 @@ pipeline {
                     steps {
                         withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
-                            sh('gcloud container clusters get-credentials uat-cluster --zone us-central1-a')
-                            sh('kubectl set image deployments/tomcat-server patient-onboarding=gcr.io/p3-patient-onboarding/patient-onboarding:UATlatest')
-                            sh('kubectl delete pods -l app=tomcat-server')
+                            sh('gcloud container clusters get-credentials $CLUSTER --zone $ZONE')
+                            sh('kubectl set image deployments/$DEPLOYMENT patient-onboarding=gcr.io/$PROJECT_ID/$IMAGE_TAG')
+                            sh('kubectl delete pods -l app=$DEPLOYMENT')
                         }
                     }
                 }
@@ -52,7 +61,7 @@ pipeline {
                     steps {
                         withCredentials([file(credentialsId: 'default-compute-service-account', variable: 'DCSA_KEY')]) {
                             sh('gcloud auth activate-service-account --key-file=${DCSA_KEY}')
-                            sh('gsutil -m cp -r ./ProjectAngular/dist/ProjectAngular/.* gs://patient-onboarding-test/')
+                            sh('gsutil -m cp -r ./ProjectAngular/dist/ProjectAngular/.* $BUCKET_URL')
                         }
                     }
                 }
