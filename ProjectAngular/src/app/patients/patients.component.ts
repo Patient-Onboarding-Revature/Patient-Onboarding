@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Patients } from './patients';
+import { User } from '../user';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-patients',
@@ -9,8 +11,10 @@ import { Patients } from './patients';
 export class PatientsComponent {
   pageTitle = 'Patints List';
 
-  patients: Patients[];
-  filterPatients: Patients[];
+  patients: User[];
+  filterPatients: User[];
+
+  user: User;
 
   // filter info
   filterValue = '';
@@ -24,44 +28,40 @@ export class PatientsComponent {
       this.filterPatients = this.filterValue ? this.perfomFilter(this.filterValue) : this.patients;
   }
 
-  constructor() {
-      this.patients = [
-          {
-              firstname: 'Maria',
-              lastname: 'Abashina'
-          },
-          {
-            firstname: 'Jacob',
-            lastname: 'Hayhurst'
-          },
-          {
-            firstname: 'Michael',
-            lastname: 'Tang'
-          },
-          {
-            firstname: 'David',
-            lastname: 'Juarez'
-          }
-      ];
-      this.filterPatients = this.patients;
+  constructor(private userService: UserService) {
+      this.userService.selectAll().subscribe(data => {
+        this.patients = data;
+        console.log(data);
+        console.log(this.patients);
+      });
+      this.patients = this.patients;
   }
 
-  perfomFilter(filterValue: string): Patients[] {
+
+  perfomFilter(filterValue: string): User[] {
       filterValue = filterValue.toLocaleLowerCase();
 
-      return this.patients.filter((patient: Patients) =>
-          patient.lastname.toLocaleLowerCase().indexOf(filterValue)
+      return this.patients.filter((patient: User) =>
+          patient.lastName.toLocaleLowerCase().indexOf(filterValue)
           !== -1);
   }
 
   findbyName(lastname: string) {
-    let patient: Patients;
+    let patient: User;
+    console.log('iampddsgdsgatiemt' + this.patients);
     this.patients.forEach(element => {
-      if (element.lastname === lastname) {
+      if (element.lastName === lastname) {
         patient = element;
+        console.log('iampatiemt' + patient);
       }
     });
     return patient;
+  }
+
+  setUser(user: User): User {
+    this.user = user;
+    console.log('get user ' + this.user.firstName);
+    return this.user;
   }
 
   starEventWasTriggered(temp: string): void {

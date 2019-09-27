@@ -31,8 +31,11 @@ public class Doctor {
 	@Column(name="username", nullable=false)
 	private String username;
 	
+	@Column(name="passwordword", nullable = true)
+	private String something;
+	
 	@Column(name="password", nullable=false)
-	private String pass;
+	private String password;
 	
 	@Column(name="specialty", nullable=false)
 	private String specialty;
@@ -80,11 +83,11 @@ public class Doctor {
 	}
 
 	public String getPass() {
-		return pass;
+		return password;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPass(String password) {
+		this.password = password;
 	}
 
 	public String getSpecialty() {
@@ -119,39 +122,51 @@ public class Doctor {
 		this.role = role;
 	}
 
-	public Doctor(int id, String firstName, String lastName, String username, String pass, String specialty,
+	public Doctor(int id, String firstName, String lastName, String username, String password, String specialty,
 			Hospital hospital, List<Patient> patients, UserRole role) {
 		super();
 		Id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
-		this.pass = pass;
+		this.password = password;
 		this.specialty = specialty;
 		this.hospital = hospital;
 		this.patients = patients;
 		this.role = role;
 	}
 
-	public Doctor(String firstName, String lastName, String username, String pass, String specialty, Hospital hospital,
+	public Doctor(String firstName, String lastName, String username, String password, String specialty, Hospital hospital,
 			List<Patient> patients, UserRole role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
-		this.pass = pass;
+		this.password = password;
 		this.specialty = specialty;
 		this.hospital = hospital;
 		this.patients = patients;
 		this.role = role;
 	}
 	
+	public Doctor(String firstName, String lastName, String username, String passwordword, String password, String specialty,
+			UserRole role) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.something = passwordword;
+		this.username = username;
+		this.password = password;
+		this.specialty = specialty;
+		this.role = role;
+	}
+
 	public Doctor() {}
 
 	@Override
 	public String toString() {
 		return "Doctor [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", pass=" + pass + ", specialty=" + specialty + ", hospital=" + hospital + ", patients=" + patients
+				+ ", password=" + password + ", specialty=" + specialty + ", hospital=" + hospital + ", patients=" + patients
 				+ ", role=" + role + "]";
 	}
 	

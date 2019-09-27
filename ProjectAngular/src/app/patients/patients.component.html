@@ -14,11 +14,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let temp of filterPatients'>
+            <tr *ngFor='let temp of patients'>
                 <th scope="row">{{temp.index}}</th>
-                <td>{{temp.firstname}}</td>
-                <td>{{temp.lastname}}</td>
-                <td><button [routerLink]="['/app-patient-info', temp.lastname]">View full info</button></td>
+                <td>{{temp.firstName}}</td>
+                <td>{{temp.lastName}}</td>
+                <td><button [routerLink]="['/app-patient-info', temp.lastName]">View full info</button></td>
             </tr>
         </tbody>
     </table>

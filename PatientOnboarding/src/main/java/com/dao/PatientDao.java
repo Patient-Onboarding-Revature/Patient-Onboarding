@@ -49,4 +49,10 @@ public class PatientDao {
 		
 	}
 	
+	public void update(Patient obj) {
+		
+		sf.getCurrentSession().merge(obj);
+		
+	}
+	
 }

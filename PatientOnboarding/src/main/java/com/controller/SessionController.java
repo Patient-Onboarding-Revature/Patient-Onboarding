@@ -1,11 +1,13 @@
 package com.controller;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,8 +75,8 @@ public class SessionController {
 		System.out.println("in post test");
 		
 		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
-		String firstname = ang.get("firstname");
-		String lastname = ang.get("lastname");
+		String firstname = ang.get("firstName");
+		String lastname = ang.get("lastName");
 		String username = ang.get("username");
 		String password = ang.get("password");
 		
@@ -93,6 +95,73 @@ public class SessionController {
 		System.out.println(patient);
 		
 		return patient;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value="/api/loginuser.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody Patient login(@RequestBody Object stuff) {
+		System.out.println("loginuser.app");
+		
+		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
+		String username = ang.get("username");
+		String password = ang.get("password");
+		
+		System.out.println(username+" "+password);
+		
+		Patient patient = patientDao.selectByUsername(username);
+		System.out.println(patient);
+		
+		return patient;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value="/api/updateuser.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody Patient update(@RequestBody Object stuff) {
+		System.out.println("updating patient");
+		
+		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
+		String firstName = ang.get("firstName");
+		String lastName = ang.get("lastName");
+		Character middleInit = ang.get("middleInit").charAt(0);
+		String username = ang.get("username");
+		String password = ang.get("password");
+		String address = ang.get("address");
+		String state = ang.get("state");
+		Integer zip = Integer.parseInt(ang.get("zip"));
+		Long number = Long.parseLong(ang.get("number"));
+		String email = ang.get("email");
+		
+		Patient patient = patientDao.selectByUsername(username);
+		System.out.println(patient);
+		
+		patient.setFirstName(firstName);
+		patient.setLastName(lastName);
+		patient.setMiddleInit(middleInit);
+		patient.setUsername(username);
+		patient.setPassword(password);
+		patient.setAddress(address);
+		patient.setState(state);
+		patient.setZip(zip);
+		patient.setNumber(number);
+		patient.setEmail(email);
+		System.out.println(patient);
+		
+		patientDao.update(patient);
+		
+		Patient p2 = patientDao.selectByUsername(username);
+		System.out.println(p2);
+		
+		return p2;
+	}
+	
+	@GetMapping(value="/api/selectuser.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody List<Patient> allPatients() {
+		System.out.println("in allPatients");
+		
+		List<Patient> patients = patientDao.selectAll();
+		System.out.println(patients);
+		
+		return patients;
 	}
 	
 //	@RequestMapping(value="/api/insertuser.app")

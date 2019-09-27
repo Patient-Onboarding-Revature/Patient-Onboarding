@@ -1,8 +1,16 @@
-export class User {
+import { Role } from './role';
 
-    firstname: string;
-    lastname: string;
+export class User {
+    Id: number;
+    firstName: string;
+    lastName: string;
     username: string;
     password: string;
-
+    address: string;
+    email: string;
+    middleInit: string;
+    state: string;
+    zip: number;
+    number: number;
+    role: Role;
 }

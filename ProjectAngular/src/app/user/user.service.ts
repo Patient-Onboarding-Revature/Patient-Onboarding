@@ -8,14 +8,32 @@ import { User } from '../user';
 })
 export class UserService {
 
-  private url: string;
+  private urlsave: string;
+  private urlupdate: string;
+  private urlselect: string;
+  private urllogin: string;
 
   constructor(private http: HttpClient) {
-    this.url = 'http://localhost:9009/PatientOnboarding/api/insertuser.app';
+    this.urlsave = 'http://34.68.184.228/PatientOnboarding/api/insertuser.app';
+    this.urlupdate = 'http://34.68.184.228/PatientOnboarding/api/updateuser.app';
+    this.urlselect = 'http://34.68.184.228/PatientOnboarding/api/selectuser.app';
+    this.urllogin = 'http://34.68.184.228/PatientOnboarding/api/loginuser.app';
   }
 
   public save(user: User): Observable<string[]> {
-    return this.http.post<string[]>(this.url, user);
+    return this.http.post<string[]>(this.urlsave, user);
+  }
+
+  public update(user: User): Observable<string[]> {
+    return this.http.post<string[]>(this.urlupdate, user);
+  }
+
+  public selectAll(): Observable<User[]> {
+    return this.http.get<User[]>(this.urlselect);
+  }
+
+  public findByName(user: User): Observable<User> {
+    return this.http.post<User>(this.urllogin, user);
   }
 
 }

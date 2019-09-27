@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value= {"hospitals","insurance","medications","doctors"})
+@JsonIgnoreProperties(value= {"hospitals","insurance","medications","doctors","salutation","suffix","marital_status","ethnicity","race","sex","emergency_contact","record"})
 @Entity
 @Table(name="patient")
 public class Patient {

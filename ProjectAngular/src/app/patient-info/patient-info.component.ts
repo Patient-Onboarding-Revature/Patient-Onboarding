@@ -5,6 +5,7 @@ import { PatientsComponent } from '../patients/patients.component';
 import { FormControl, FormGroup } from '@angular/forms';
 import { User } from '../user';
 import { UserService } from '../user/user.service';
+import { TransferService } from '../transfer/transfer.service';
 
 declare var $: any;
 
@@ -16,10 +17,11 @@ declare var $: any;
 export class PatientInfoComponent implements OnInit {
 
   currentPatient = 'no name';
-  curPatient: Patients;
+  curPatient: User;
   user: User;
 
-  constructor(private route: ActivatedRoute, private setPat: PatientsComponent, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private setPat: PatientsComponent, private userService: UserService,
+              private transferService: TransferService) { }
 
   userEdit = new FormGroup({
     firstname: new FormControl(''),
@@ -45,9 +47,14 @@ export class PatientInfoComponent implements OnInit {
     this.curPatient = this.setPat.findbyName(this.currentPatient);
   }
 
+  setUser(user: User) {
+    this.user = user;
+    console.log('get user ' + this.user.firstName);
+  }
+
   edit(): void {
-    this.curPatient.firstname = this.userEdit.value.firstname;
-    this.curPatient.lastname = this.userEdit.value.lastname;
+    this.curPatient.firstName = this.userEdit.value.firstname;
+    this.curPatient.lastName = this.userEdit.value.lastname;
    // this.user.username = this.userEdit.value.username;
    // this.user.password = this.userEdit.value.password;
     console.log(this.userEdit.value);
@@ -57,5 +64,8 @@ export class PatientInfoComponent implements OnInit {
     $('.modal').css('display', 'none');
     $('.modal-backdrop').remove();
     $('body').removeClass('modal-open');
+    this.userService.update(this.user).subscribe(data => {
+      console.log(data);
+    });
   }
 }

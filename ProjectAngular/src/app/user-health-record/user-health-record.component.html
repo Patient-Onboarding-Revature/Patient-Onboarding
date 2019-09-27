@@ -1,0 +1,454 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#userHealthModal">
+    Health Record
+</button>
+<!-- Modal -->
+<div class="modal fade" id="userHealthModal" tabindex="-1" role="dialog" aria-labelledby="userHealthModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userHealthModalLabel">Health Record</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="userHealthRecord" (ngSubmit)="save()">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">High Blood Pressure</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline" >
+                                                <input class="form-check-input" type="radio"
+                                                    id="inlineRadio1" value="true" formControlName="bloodpressure">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline" >
+                                                <input class="form-check-input" type="radio"
+                                                    id="inlineRadio2" value="false" formControlName="bloodpressure">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Heart Disease</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="heartDisease"
+                                                    id="inlineRadio3" value="true">
+                                                <label class="form-check-label" for="inlineRadio3">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="heartDisease"
+                                                    id="inlineRadio4" value="false">
+                                                <label class="form-check-label" for="inlineRadio4">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Stroke</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="stroke"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="stroke"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Diabetes</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="diabetes"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="diabetes"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Digestive Problems</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="digestive"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="digestive"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Lung Problems</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="lung"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="lung"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Visual Impairment</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="visual"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="visual"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Back or Joint Problems (arthritis)</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="joint"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="joint"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Depression or Severe Anxiety</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="depression"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="depression"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+
+                            </div>
+                            <div class="col-4">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Cancer</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="cancer"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="cancer"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Liver Problems (hepatitis/jaundice)</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="liver"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="liver"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Thyroid Problems</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="thyroid"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="thyroid"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Hearing Problems</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="hearing"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="hearing"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Have you ever done drugs</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="drugs"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="drugs"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Are you Sexually Active?</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="sexually"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="sexually"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you exercise regularly</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="exercise"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="exercise"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you have a living will?</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="livingWill"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="livingWill"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <hr>
+                            </div>
+                            <div class="col-4">
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you smoke?</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="smoke"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="smoke"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">If yes how often</label>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                    formControlName="smokefreq">
+                                        <option>Never</option>
+                                        <option>Sometimes</option>
+                                        <option>Often</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you use chewing tobacco or snuff?
+                                        </legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="tobacco"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="tobacco"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">If yes how often</label>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        formControlName="tobaccofreq">
+                                        <option>Never</option>
+                                        <option>Sometimes</option>
+                                        <option>Often</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you drink alcohol?</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="alcohol"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="alcohol"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">If yes how often</label>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        formControlName="alcoholfreq">
+                                        <option>Never</option>
+                                        <option>Sometimes</option>
+                                        <option>Often</option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label pt-0">Do you drink caffeinated beverages?</legend>
+                                        <div class="col-sm-10">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="caffeinated"
+                                                    id="inlineRadio1" value="true">
+                                                <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" formControlName="caffeinated"
+                                                    id="inlineRadio2" value="false">
+                                                <label class="form-check-label" for="inlineRadio2">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">If yes how often</label>
+                                    <select class="form-control" id="exampleFormControlSelect1"
+                                        formControlName="caffeinatedfreq">
+                                        <option>Never</option>
+                                        <option>Sometimes</option>
+                                        <option>Often</option>
+                                    </select>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
