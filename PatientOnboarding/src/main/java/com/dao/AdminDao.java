@@ -40,5 +40,13 @@ public class AdminDao {
 		return obj;
 		
 	}
+	
+	public Admin selectByUsername(String username) {
+		
+		List<Admin> list = sf.getCurrentSession().createQuery("from Admin where username='"+username+"'", Admin.class).list();
+		
+		return list.get(0);
+		
+	}
 
 }

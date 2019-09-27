@@ -41,5 +41,13 @@ public class DoctorDao {
 		return obj;
 
 	}
+	
+	public Doctor selectByUsername(String username) {
+		
+		List<Doctor> list = sf.getCurrentSession().createQuery("from Doctor where username='"+username+"'", Doctor.class).list();
+		
+		return list.get(0);
+		
+	}
 
 }

@@ -125,6 +125,8 @@ public class Admin {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public Admin() {}
 
 	@Override
 	public String toString() {

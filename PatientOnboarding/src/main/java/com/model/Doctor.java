@@ -13,6 +13,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"patients"})
 @Entity
 @Table(name="doctor")
 public class Doctor {
@@ -166,8 +169,7 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", specialty=" + specialty + ", hospital=" + hospital + ", patients=" + patients
-				+ ", role=" + role + "]";
+				+ ", password=" + password + ", specialty=" + specialty + ", hospital=" + hospital + ", role=" + role + "]";
 	}
 	
 }

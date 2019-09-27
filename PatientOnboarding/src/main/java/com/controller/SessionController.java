@@ -13,24 +13,33 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dao.AdminDao;
+import com.dao.DoctorDao;
 import com.dao.PatientDao;
 import com.dao.UserRoleDao;
+import com.model.Admin;
+import com.model.Doctor;
 import com.model.Patient;
 import com.model.UserRole;
 
 @RequestMapping
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://patient-onboarding-test.storage.googleapis.com")
 @Controller
 public class SessionController {
 	
 	private PatientDao patientDao;
 	private UserRoleDao userRoleDao;
+	private AdminDao adminDao;
+	private DoctorDao doctorDao;
 
 	@Autowired
-	public SessionController(PatientDao patientDao, UserRoleDao userRoleDao) {
+	public SessionController(PatientDao patientDao, UserRoleDao userRoleDao,
+			AdminDao adminDao, DoctorDao doctorDao) {
 		super();
 		this.patientDao = patientDao;
 		this.userRoleDao = userRoleDao;
+		this.adminDao = adminDao;
+		this.doctorDao = doctorDao;
 	}
 	
 	public SessionController() {}
@@ -99,8 +108,8 @@ public class SessionController {
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value="/api/loginuser.app", consumes = MediaType.ALL_VALUE)
-	public @ResponseBody Patient login(@RequestBody Object stuff) {
-		System.out.println("loginuser.app");
+	public @ResponseBody Patient loginPatient(@RequestBody Object stuff) {
+		System.out.println("patient login");
 		
 		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 		String username = ang.get("username");
@@ -112,6 +121,40 @@ public class SessionController {
 		System.out.println(patient);
 		
 		return patient;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value="/api/loginadmin.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody Admin loginAdmin(@RequestBody Object stuff) {
+		System.out.println("login admin");
+		
+		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
+		String username = ang.get("username");
+		String password = ang.get("password");
+		
+		System.out.println(username+" "+password);
+		
+		Admin admin = adminDao.selectByUsername(username);
+		System.out.println(admin);
+		
+		return admin;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value="/api/logindoctor.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody Doctor loginDoctor(@RequestBody Object stuff) {
+		System.out.println("login doctor");
+		
+		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
+		String username = ang.get("username");
+		String password = ang.get("password");
+		
+		System.out.println(username+" "+password);
+		
+		Doctor doctor = doctorDao.selectByUsername(username);
+		System.out.println(doctor);
+		
+		return doctor;
 	}
 	
 	@SuppressWarnings("unchecked")
