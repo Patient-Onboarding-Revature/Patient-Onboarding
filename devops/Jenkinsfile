@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        /*
         PROJECT_ID = credentials('project-id')
         ZONE = credentials('zone')
         CLUSTER = credentials('cluster')
@@ -10,6 +11,7 @@ pipeline {
         IMAGE_TAG = credentials('image-tag')
         DBURL = credentials('database-url')
         DBUSE = credentials('database-user')
+        */
         DBPASS = credentials('database-password')
     }
 
