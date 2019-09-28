@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dao.AdminDao;
 import com.dao.DoctorDao;
+import com.dao.HospitalDao;
 import com.dao.PatientDao;
 import com.dao.UserRoleDao;
 import com.model.Admin;
 import com.model.Doctor;
+import com.model.Hospital;
 import com.model.Patient;
 import com.model.UserRole;
 
@@ -31,15 +33,17 @@ public class SessionController {
 	private UserRoleDao userRoleDao;
 	private AdminDao adminDao;
 	private DoctorDao doctorDao;
+	private HospitalDao hospitalDao;
 
 	@Autowired
 	public SessionController(PatientDao patientDao, UserRoleDao userRoleDao,
-			AdminDao adminDao, DoctorDao doctorDao) {
+			AdminDao adminDao, DoctorDao doctorDao, HospitalDao hospitalDao) {
 		super();
 		this.patientDao = patientDao;
 		this.userRoleDao = userRoleDao;
 		this.adminDao = adminDao;
 		this.doctorDao = doctorDao;
+		this.hospitalDao = hospitalDao;
 	}
 	
 	public SessionController() {}
@@ -205,6 +209,26 @@ public class SessionController {
 		System.out.println(patients);
 		
 		return patients;
+	}
+	
+	@GetMapping(value="/api/selecthospital.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody List<Hospital> allHospitals() {
+		System.out.println("in allHospitals");
+		
+		List<Hospital> hospitals = hospitalDao.selectAll();
+		System.out.println(hospitals);
+		
+		return hospitals;
+	}
+	
+	@GetMapping(value="/api/selecthosp.app", consumes = MediaType.ALL_VALUE)
+	public @ResponseBody Hospital hospital() {
+		System.out.println("in hospital");
+		
+		Hospital hospitals = hospitalDao.select(1);
+		System.out.println(hospitals);
+		
+		return hospitals;
 	}
 	
 //	@RequestMapping(value="/api/insertuser.app")

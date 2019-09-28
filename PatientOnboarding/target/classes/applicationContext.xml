@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -13,7 +13,7 @@
 	<context:component-scan
 		base-package="com" />
 	<tx:annotation-driven />
-	<mvc:annotation-driven/>
+	<!-- <mvc:annotation-driven/> -->
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -36,7 +36,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.connection.pool_size">10</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>
@@ -46,4 +46,4 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-</beans> -->
+</beans>

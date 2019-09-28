@@ -12,8 +12,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value= {"patients","insurances","doctors","admins"})
 @Entity
-@Table(name="hospital_practice")
+@Table(name="hospital")
 public class Hospital {
 
 	@Id
@@ -144,13 +147,20 @@ public class Hospital {
 		this.admins = admins;
 	}
 	
+	public Hospital(String name, String address, String state, int zip) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+	}
+
 	public Hospital() {}
 
 	@Override
 	public String toString() {
 		return "Hospital [Id=" + Id + ", name=" + name + ", address=" + address + ", state=" + state + ", zip=" + zip
-				+ ", patients=" + patients + ", insurances=" + insurances + ", doctors=" + doctors + ", admins="
-				+ admins + "]";
+				+"]";
 	}
 	
 }

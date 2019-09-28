@@ -28,7 +28,7 @@ public class HospitalDao {
 	}
 
 	public List<Hospital> selectAll() {
-		List<Hospital> list = sf.getCurrentSession().createQuery("from hospital", Hospital.class).list();
+		List<Hospital> list = sf.getCurrentSession().createQuery("from Hospital", Hospital.class).list();
 		
 		return list;
 	}

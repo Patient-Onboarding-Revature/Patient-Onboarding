@@ -34,9 +34,6 @@ public class Doctor {
 	@Column(name="username", nullable=false)
 	private String username;
 	
-	@Column(name="passwordword", nullable = true)
-	private String something;
-	
 	@Column(name="password", nullable=false)
 	private String password;
 	
@@ -152,12 +149,11 @@ public class Doctor {
 		this.role = role;
 	}
 	
-	public Doctor(String firstName, String lastName, String username, String passwordword, String password, String specialty,
+	public Doctor(String firstName, String lastName, String username, String password, String specialty,
 			UserRole role) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.something = passwordword;
 		this.username = username;
 		this.password = password;
 		this.specialty = specialty;
