@@ -23,7 +23,7 @@ import com.model.Patient;
 import com.model.UserRole;
 
 @RequestMapping
-@CrossOrigin(origins = "http://patient-onboarding-test.storage.googleapis.com/index.html")
+@CrossOrigin(origins = "*")
 @Controller
 public class SessionController {
 	
