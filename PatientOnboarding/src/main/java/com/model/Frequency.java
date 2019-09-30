@@ -16,6 +16,22 @@ public class Frequency {
 	@Column(name="frequency")
 	private String frequency;
 	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public String getFrequency() {
+		return frequency;
+	}
+
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
+	}
+
 	public Frequency() {}
 
 	public Frequency(int id, String frequency) {

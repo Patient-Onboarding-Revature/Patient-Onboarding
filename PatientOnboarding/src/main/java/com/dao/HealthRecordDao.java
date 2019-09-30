@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.model.HealthRecord;
+import com.model.Patient;
 
 @Transactional
 @Repository("healthRecordDao")
@@ -28,9 +29,15 @@ public class HealthRecordDao {
 	}
 
 	public List<HealthRecord> selectAll() {
-		List<HealthRecord> list = sf.getCurrentSession().createQuery("from health_record", HealthRecord.class).list();
+		List<HealthRecord> list = sf.getCurrentSession().createQuery("from HealthRecord", HealthRecord.class).list();
 		
 		return list;
+	}
+	
+	public HealthRecord selectByPatient(Patient patient) {
+		List<HealthRecord> list = sf.getCurrentSession().createQuery("from HealthRecord where patient_patient_id="+patient.getId(), HealthRecord.class).list();
+		
+		return list.get(0);
 	}
 	
 	public HealthRecord select(int id) {
@@ -38,6 +45,12 @@ public class HealthRecordDao {
 		HealthRecord obj = (HealthRecord) sf.getCurrentSession().get(HealthRecord.class, id);
 		
 		return obj;
+		
+	}
+	
+	public void update(HealthRecord obj) {
+		
+		sf.getCurrentSession().merge(obj);
 		
 	}
 

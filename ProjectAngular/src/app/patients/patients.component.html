@@ -1,9 +1,6 @@
+<div id="maindiv">
 <app-navbar></app-navbar>
 <div class="container">
-    <div class='row'>
-        <div class='col-md-2'>Search by last name:</div>
-        <div class='col-md-4'><input type='text' [(ngModel)]='inputField'> </div>
-    </div>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -14,12 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor='let temp of patients'>
-                <th scope="row">{{temp.index}}</th>
+            <tr *ngFor='let temp of patients; let i = index'>
+                <th scope="row">{{i+1}}</th>
                 <td>{{temp.firstName}}</td>
                 <td>{{temp.lastName}}</td>
-                <td><button [routerLink]="['/app-patient-info', temp.lastName]">View full info</button></td>
+                <td><button class="btn btn-outline-success" [routerLink]="['/app-patient-info', temp.id]">View details</button></td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>

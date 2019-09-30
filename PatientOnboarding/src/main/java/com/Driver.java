@@ -125,7 +125,7 @@ public class Driver {
 		
 		Frequency freq1 = new Frequency(1,"Never");
 		Frequency freq2 = new Frequency(2,"Sometimes");
-		Frequency freq3 = new Frequency(3,"Always");
+		Frequency freq3 = new Frequency(3,"Often");
 		
 		freqDao.insert(freq1);
 		freqDao.insert(freq2);

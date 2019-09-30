@@ -33,6 +33,12 @@
     float: bottom;
     margin-top: 43%;
     font-size: 40px;
+    text-align: justify;
+    background-color:  #f8f9fab0;
+    padding: 10px 20px;
+    box-shadow: 0 0 10px -3px #000;
+    color: #000;
+    font-weight: 200;
 }
 
 .navbar-brand {

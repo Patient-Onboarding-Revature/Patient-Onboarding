@@ -19,8 +19,9 @@ export class NavbarComponent implements OnInit {
     this.user = this.transferService.getUser();
     console.log(this.user);
   }
-
-  // userRole() {
-
-  // }
+  logout() {
+    this.transferService.clearUser();
+    console.log('log out');
+  }
 }
+

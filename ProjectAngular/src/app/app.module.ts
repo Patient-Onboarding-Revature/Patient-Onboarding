@@ -41,10 +41,10 @@ import { HealthRecord } from './user-health-record/healthrecord';
       {path: 'user_home', component: UserHomeComponent},
       {path: 'app-patients', component: PatientsComponent},
       {path: 'app-hospitals', component: HospitalsComponent},
-      {path: 'app-hospital-info', component: HospitalInfoComponent},
+      {path: 'app-hospital-info/:id', component: HospitalInfoComponent},
       {path: 'app-user-info', component: UserInfoComponent},
       {path: 'app-user-health-record', component: UserHealthRecordComponent},
-      {path: 'app-patient-info/:patientname', component: PatientInfoComponent},
+      {path: 'app-patient-info/:userId', component: PatientInfoComponent},
       {path: '**', redirectTo: 'app-pre-login', pathMatch: 'full'}
     ])
   ],

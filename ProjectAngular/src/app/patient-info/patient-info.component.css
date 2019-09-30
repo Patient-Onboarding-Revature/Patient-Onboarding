@@ -9,14 +9,22 @@
     margin-top: 150px;
 }
 
-.maininfo {
-    margin-top: 30px;
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-image: url("https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+.image {
+    width: 35%;
+    height: 60%;
+    margin-top: 50px;
+    position: absolute;
 }
 
 .modal-dialog {
     max-width: 940px;
     margin: 1.75rem auto;
 }
+
+#maindiv {
+    height: 100vh;
+    background-image: url(https://wallpaperplay.com/walls/full/d/8/b/329997.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+

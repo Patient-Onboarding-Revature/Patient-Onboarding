@@ -47,12 +47,22 @@ export class UserHealthRecordComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.userService.getHealth(this.transferService.getUser()).subscribe(data => {
+      this.healthRecord = data;
+      console.log(data);
+    });
   }
 
   save(): void {
     console.log(this.userHealthRecord.value);
     this.healthRecord = this.userHealthRecord.value;
+    this.healthRecord.username = this.transferService.getUser().username;
     console.log(this.healthRecord);
+    this.userService.saveHealth(this.healthRecord).subscribe(data => {
+      console.log(data);
+      this.healthRecord = data;
+      console.log(this.healthRecord);
+    });
     $('.modal').removeClass('in');
     $('.modal').attr('aria-hidden', 'true');
     $('.modal').css('display', 'none');

@@ -1,136 +1,152 @@
-<app-navbar></app-navbar>
-<div class="container">
-    <div class="row maininfo">
-        <div class="col-5"></div>
-        <div class="col-5 bio">
-            <h5>{{curPatient.lastName}} {{curPatient.firstName}}</h5>
-            <p><b>age: </b>22</p>
-            <p><b>username: </b>masha</p>
-            <p><b>address: </b>109 Bay 10th st</p>
-            <p><b>contact number: </b>917-487-7641</p>
-            <p><b>contact email: </b>mail.me@mail</p>
-            <p><b>sex: </b>F</p>
-            <p><b>status: </b>single</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officiis sapiente animi tenetur ab
-                cumque esse est sed, ex excepturi magnam repudiandae iusto nam nemo mollitia odio porro eius illum!</p>
+<div id="maindiv">
+    <app-navbar></app-navbar>
+    <div class="container">
+        <div class="row">
+            <img class="image" src="assets/mask.webp">
+            <!-- <img class="image" [src]="img"> -->
+            <div class="col-5"></div>
+            <div class="col-5 bio">
+                <h5>{{curPatient.lastName}} {{curPatient.firstName}}</h5>
+                <p><b>age: </b>22</p>
+                <p><b>username: </b>{{curPatient.username}}</p>
+                <p><b>address: </b>{{curPatient.address}}</p>
+                <p><b>contact number: </b>{{curPatient.number}}</p>
+                <p><b>contact email: </b>{{curPatient.email}}</p>
+                <p><b>sex: </b>F</p>
+                <p><b>status: </b>single</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officiis sapiente animi tenetur ab
+                    cumque esse est sed, ex excepturi magnam repudiandae iusto nam nemo mollitia odio porro eius illum!
+                </p>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#userModal">
-                Edit information
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="userModalLabel">Edit Profile</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form [formGroup]="userEdit" (ngSubmit)="edit()">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#userModal">
+                    Health Record 
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="userModalLabel">Health Record {{curPatient.lastName}} {{curPatient.firstName}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">First Name</label>
-                                                <input type="text" class="form-control" placeholder=""
-                                                    formControlName="firstname">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Middle initial</label>
-                                                <input type="text" class="form-control" formControlName="middlename">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Last name</label>
-                                                <input type="text" class="form-control" formControlName="lastname">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Salutation</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="salutation"> 
-                                                    <option>Mr.</option>
-                                                    <option>Ms.</option>
-                                                    <option>Mrs.</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Suffix</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="suffix">
-                                                    <option>Sr.</option>
-                                                    <option>Jr.</option>
-                                                </select>
-                                            </div>
+                                            <p><b>High Blood Pressure</b></p>
+                                            <p *ngIf="healthRecord.bloodpressure"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.bloodpressure"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Heart Disease</b></p>
+                                            <p *ngIf="healthRecord.heartDisease"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.heartDisease"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Stroke</b></p>
+                                            <p *ngIf="healthRecord.stroke"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.stroke"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Diabetes</b></p>
+                                            <p *ngIf="healthRecord.diabetes"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.diabetes"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Digestive Problems</b></p>
+                                            <p *ngIf="healthRecord.digestive"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.digestive"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Lung Problems</b></p>
+                                            <p *ngIf="healthRecord.lung"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.lung"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Visual Impairment</b></p>
+                                            <p *ngIf="healthRecord.visual"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.visual"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Back or Joint Problems (arthritis)</b></p>
+                                            <p *ngIf="healthRecord.joint"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.joint"><i>Current record: <b>no</b></i></p>
+                                            <hr>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Street Address</label>
-                                                <input type="text" class="form-control" formControlName="streetaddress">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">State</label>
-                                                <input type="text" class="form-control" formControlName="state">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Zip code</label>
-                                                <input type="text" class="form-control" formControlName="zipcode">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Contact number</label>
-                                                <input type="text" class="form-control" formControlName="contactnum">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlInput1">Email</label>
-                                                <input type="email" class="form-control" formControlName="email">
-                                            </div>
+                                            <p><b>Depression or Severe Anxiety</b></p>
+                                            <p *ngIf="healthRecord.depression"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.depression"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                        
+                                            <p><b>Cancer</b></p>
+                                            <p *ngIf="healthRecord.cancer"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.cancer"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Liver Problems (hepatitis/jaundice)</b></p>
+                                            <p *ngIf="healthRecord.liver"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.liver"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Thyroid Problems</b></p>
+                                            <p *ngIf="healthRecord.thyroid"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.thyroid"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Hearing Problems</b></p>
+                                            <p *ngIf="healthRecord.hearing"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.hearing"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Have you ever done drugs</b></p>
+                                            <p *ngIf="healthRecord.drugs"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.drugs"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Are you Sexually Active?</b></p>
+                                            <p *ngIf="healthRecord.sexually"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.sexually"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                            <p><b>Do you exercise regularly</b></p>
+                                            <p *ngIf="healthRecord.exercise"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.exercise"><i>Current record: <b>no</b></i></p>
+                                            <hr>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Marital status</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="marital">
-                                                    <option>Married</option>
-                                                    <option>Single</option>
-                                                    <option>Widowed</option>
-                                                    <option>Divorced</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Ethnicity</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="ethnicity">
-                                                    <option>Hispanic</option>
-                                                    <option>Nonhispanic</option>
-                                                    <option>Unknow</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Race</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="race">
-                                                    <option>American Indian or Alaska native</option>
-                                                    <option>Bi-racial</option>
-                                                    <option>Black/African American</option>
-                                                    <option>White/Caucasian</option>
-                                                    <option>Middle Eastern</option>
-                                                    <option>Hawaian/Pacific Islander</option>
-                                                    <option>Other</option>
-                                                    <option>Unknown</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleFormControlSelect1">Sex</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" formControlName="sex">
-                                                    <option>Male</option>
-                                                    <option>Female</option>
-                                                </select>
-                                            </div>
+                                            <p><b>Do you have a living will?</b></p>
+                                            <p *ngIf="healthRecord.livingWill"><i>Current record: <b>yes</b></i></p>
+                                            <p *ngIf="!healthRecord.livingWill"><i>Current record: <b>no</b></i></p>
+                                            <hr>
+                                     
+                                                <p><b>Do you smoke?</b></p>
+                                                <p *ngIf="healthRecord.smoke"><i>Current record: <b>yes</b></i></p>
+                                                <p *ngIf="!healthRecord.smoke"><i>Current record: <b>no</b></i></p>
+                                                <!-- <p *ngIf="!healthRecord.smokefreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.smokefreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.smokefreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
+                                                <p *ngIf="healthRecord.smokefreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <hr>
+                                                <p><b>Do you use chewing tobacco or snuff?</b></p>
+                                                <p *ngIf="healthRecord.tobacco"><i>Current record: <b>yes</b></i></p>
+                                                <p *ngIf="!healthRecord.tobacco"><i>Current record: <b>no</b></i></p>
+                                                <!-- <p *ngIf="!healthRecord.tobaccofreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
+                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <hr>
+                                                <p><b>Do you drink alcohol?</b></p>
+                                                <p *ngIf="healthRecord.alcohol"><i>Current record: <b>yes</b></i></p>
+                                                <p *ngIf="!healthRecord.alcohol"><i>Current record: <b>no</b></i></p>
+                                                <!-- <p *ngIf="!healthRecord.alcoholfreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
+                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <hr>
+                                                <p><b>Do you drink caffeinated beverages?</b></p>
+                                                <p *ngIf="healthRecord.caffeinated"><i>Current record: <b>yes</b></i></p>
+                                                <p *ngIf="!healthRecord.caffeinated"><i>Current record: <b>no</b></i></p>
+                                                <!-- <p *ngIf="!healthRecord.caffeinatedfreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
+                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <hr>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

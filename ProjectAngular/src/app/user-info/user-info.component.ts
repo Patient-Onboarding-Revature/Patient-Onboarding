@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user/user.service';
 import { User } from '../user';
 import { TransferService } from '../transfer/transfer.service';
+import { HealthRecord } from '../user-health-record/healthrecord';
 
 declare var $: any;
 
@@ -13,6 +14,8 @@ declare var $: any;
   styleUrls: ['./user-info.component.css']
 })
 export class UserInfoComponent implements OnInit {
+
+  healthRecord = new HealthRecord();
 
   constructor(private router: Router, private route: ActivatedRoute, private userService: UserService,
               private transferService: TransferService, private user: User) {
@@ -32,6 +35,11 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
     this.user = this.transferService.getUser();
     console.log(this.user);
+    this.userService.getHealth(this.user).subscribe(data => {
+      this.healthRecord = data;
+      console.log('from user ' + this.healthRecord);
+    });
+
   }
 
   edit(): void {

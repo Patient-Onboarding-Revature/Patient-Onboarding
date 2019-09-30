@@ -6,6 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { User } from '../user';
 import { UserService } from '../user/user.service';
 import { TransferService } from '../transfer/transfer.service';
+import { HealthRecord } from '../user-health-record/healthrecord';
 
 declare var $: any;
 
@@ -19,9 +20,12 @@ export class PatientInfoComponent implements OnInit {
   currentPatient = 'no name';
   curPatient: User;
   user: User;
+  img = 'assets/user${this.curPatient}.jpeg';
+  healthRecord = new HealthRecord();
 
-  constructor(private route: ActivatedRoute, private setPat: PatientsComponent, private userService: UserService,
-              private transferService: TransferService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService) {
+                this.user = new User();
+               }
 
   userEdit = new FormGroup({
     firstname: new FormControl(''),
@@ -43,13 +47,17 @@ export class PatientInfoComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.currentPatient = this.route.snapshot.paramMap.get('patientname');
-    this.curPatient = this.setPat.findbyName(this.currentPatient);
-  }
+    this.currentPatient = this.route.snapshot.paramMap.get('userId');
+    this.user.Id = parseInt(this.currentPatient, 10);
+    this.userService.findByPatientId(this.user).subscribe(data => {
+      this.curPatient = data;
+      this.userService.getHealth(this.curPatient).subscribe(record => {
+        this.healthRecord = record;
+        console.log('from user page ' + this.healthRecord);
+      });
+      return this.curPatient;
+    });
 
-  setUser(user: User) {
-    this.user = user;
-    console.log('get user ' + this.user.firstName);
   }
 
   edit(): void {

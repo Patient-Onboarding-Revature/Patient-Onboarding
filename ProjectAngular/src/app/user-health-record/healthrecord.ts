@@ -24,4 +24,6 @@ export class HealthRecord {
     alcoholfreq: string;
     caffeinated: boolean;
     caffeinatedfreq: string;
+
+    username: string;
 }

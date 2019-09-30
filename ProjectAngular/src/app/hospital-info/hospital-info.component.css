@@ -7,11 +7,10 @@
     height: 100%;
 }
 
-.maininfo {
-    margin-top: 30px;
-    background-size: 50%;
-    background-repeat: no-repeat;
-    background-image: url("https://images.pexels.com/photos/905874/pexels-photo-905874.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+.image {
+    width: 45%;
+    margin-top: 50px;
+    position: absolute;
 }
 
 .bio {
@@ -23,4 +22,11 @@
     color: #000;
     font-weight: 200;
     margin-top: 200px;
+}
+
+#maindiv {
+    height: 100vh;
+    background-image: url(https://wallpaperplay.com/walls/full/d/8/b/329997.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
