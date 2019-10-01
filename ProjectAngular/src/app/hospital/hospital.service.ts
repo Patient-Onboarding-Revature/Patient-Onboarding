@@ -16,10 +16,10 @@ export class HospitalService {
   private urlSetDoc: string;
 
   constructor(private http: HttpClient) {
-    this.urlselect = 'http://localhost:9009/PatientOnboarding/api/selecthospital.app';
-    this.urlHospId = 'http://localhost:9009/PatientOnboarding/api/selecthospitalid.app';
-    this.urlHospDoc = 'http://localhost:9009/PatientOnboarding/api/hospitaldocs.app';
-    this.urlSetDoc = 'http://localhost:9009/PatientOnboarding/api/setdoctorpatient.app';
+    this.urlselect = 'http://34.68.184.228/PatientOnboarding/api/selecthospital.app';
+    this.urlHospId = 'http://34.68.184.228/PatientOnboarding/api/selecthospitalid.app';
+    this.urlHospDoc = 'http://34.68.184.228/PatientOnboarding/api/hospitaldocs.app';
+    this.urlSetDoc = 'http://34.68.184.228/PatientOnboarding/api/setdoctorpatient.app';
   }
 
   public selectAll(): Observable<Hospital[]> {
