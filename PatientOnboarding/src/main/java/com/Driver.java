@@ -36,7 +36,7 @@ import com.model.Sex;
 import com.model.Suffix;
 import com.model.UserRole;
 
-@SuppressWarnings("unused")
+//@SuppressWarnings("unused")
 public class Driver {
 
 	public static ApplicationContext appContext=

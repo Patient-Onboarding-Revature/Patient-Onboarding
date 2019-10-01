@@ -101,7 +101,10 @@ public class Patient {
 	@JoinColumn(name="health_record")
 	private HealthRecord record;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToMany(cascade={
+	        CascadeType.PERSIST,
+	        CascadeType.MERGE
+	    }, fetch = FetchType.EAGER)
 	private List<Doctor> doctors;
 
 	public int getId() {

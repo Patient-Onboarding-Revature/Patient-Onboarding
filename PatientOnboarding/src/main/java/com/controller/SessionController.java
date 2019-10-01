@@ -1,6 +1,8 @@
 package com.controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -425,8 +427,9 @@ public class SessionController {
         Integer id = ang.get("id");
         
         Hospital hospital = hospitalDao.select(id);
-        
-        return hospital.getDoctors();
+        LinkedHashSet<Doctor> hashSet = new LinkedHashSet<>(hospital.getDoctors());
+        ArrayList<Doctor> nodups = new ArrayList<>(hashSet);
+        return nodups;
     }
 	
 	@SuppressWarnings("unchecked")
@@ -437,8 +440,11 @@ public class SessionController {
         Integer id = ang.get("id");
         
         Doctor doctor = doctorDao.select(id);
+        List<Patient> patients = doctor.getPatients();
+        LinkedHashSet<Patient> hashSet = new LinkedHashSet<>(patients);
+        patients = new ArrayList<>(hashSet);
         
-        return doctor.getPatients();
+        return patients;
     }
 	
 	@SuppressWarnings("unchecked")
@@ -454,6 +460,7 @@ public class SessionController {
         List<Doctor> doctors = patient.getDoctors();
         doctors.add(doctor);
         patient.setDoctors(doctors);
+        
         patientDao.update(patient);
         
         return null;

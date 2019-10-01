@@ -44,7 +44,7 @@ public class Doctor {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Hospital hospital;
 	
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="doctors", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy="doctors", fetch = FetchType.EAGER)
 	private List<Patient> patients;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -167,7 +167,7 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [Id=" + Id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", specialty=" + specialty + ", hospital=" + hospital + ", role=" + role + "]";
+				+ ", password=" + password + ", specialty=" + specialty + ", hospital=" + hospital.getName() + ", role=" + role + "]";
 	}
 	
 }
