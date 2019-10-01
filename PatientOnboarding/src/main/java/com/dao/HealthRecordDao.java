@@ -35,9 +35,13 @@ public class HealthRecordDao {
 	}
 	
 	public HealthRecord selectByPatient(Patient patient) {
-		List<HealthRecord> list = sf.getCurrentSession().createQuery("from HealthRecord where patient_patient_id="+patient.getId(), HealthRecord.class).list();
-		
-		return list.get(0);
+		try {
+			List<HealthRecord> list = sf.getCurrentSession().createQuery("from HealthRecord where patient_patient_id="+patient.getId(), HealthRecord.class).list();
+			
+			return list.get(0);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public HealthRecord select(int id) {

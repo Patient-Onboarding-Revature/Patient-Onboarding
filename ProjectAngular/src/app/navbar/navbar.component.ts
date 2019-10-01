@@ -17,11 +17,9 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.transferService.getUser();
-    console.log(this.user);
   }
   logout() {
     this.transferService.clearUser();
-    console.log('log out');
   }
 }
 

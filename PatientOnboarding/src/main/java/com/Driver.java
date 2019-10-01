@@ -1,5 +1,8 @@
 package com;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -61,7 +64,7 @@ public class Driver {
 	public static void main(String[] args) {
 		
 		insertInitialValues();
-		System.out.println(selectAll());
+//		System.out.println(selectAll());
 		
 	}
 
@@ -140,10 +143,9 @@ public class Driver {
 		roleDao.insert(role3);
 		
 		Hospital h1 = new Hospital("THIS IS A HOSPITAL", "THIS IS THE HOSPITAL ADDRESS", "THIS IS THE HOSPITAL STATE", 11111);
+		List<Doctor> h1docs = new ArrayList<>();
 		Hospital h2 = new Hospital("hospital2","h2 address","h2 state", 22222);
-		
-		hospitalDao.insert(h1);
-		hospitalDao.insert(h2);
+		List<Doctor> h2docs = new ArrayList<>();
 		
 		UserRole adminRole = roleDao.select(3);
 		UserRole docRole = roleDao.select(2);
@@ -152,8 +154,18 @@ public class Driver {
 		
 		adminDao.insert(a1);
 		
-		Doctor d1 = new Doctor("doc","doclastname","boo","pass","SPECIALTY",docRole);
-		doctorDao.insert(d1);
+		Doctor d1 = new Doctor("doc","doclastname","boo","pass","SPECIALTY",docRole,h1);
+		h1docs.add(d1);
+		Doctor d2 = new Doctor("somedoc","doc","doc","pass","eyes",docRole,h2);
+		h2docs.add(d2);
+		Doctor d3 = new Doctor("docs3","doc3last","ugh","pass","oof",docRole,h1);
+		h1docs.add(d3);
+		h1.setDoctors(h1docs);
+		h2.setDoctors(h2docs);
+		
+		hospitalDao.insert(h1);
+		hospitalDao.insert(h2);
+		
 		
 //		Salutation s = SalutationDao.select(1);
 //		Suffix sx = SuffixDao.select(1);

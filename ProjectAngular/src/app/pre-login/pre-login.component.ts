@@ -50,8 +50,6 @@ export class PreLoginComponent implements OnInit {
  login(): void {
     this.user.username = this.userLogin.value.username;
     this.user.password = this.userLogin.value.password;
-    console.log(this.userLogin.value);
-    console.log(this.user);
     $('.modal').removeClass('in');
     $('.modal').attr('aria-hidden', 'true');
     $('.modal').css('display', 'none');
@@ -62,12 +60,9 @@ export class PreLoginComponent implements OnInit {
         this.user = data;
         if (this.user === null) {
           alert('Invalid credentials');
-          this.router.navigate(['/app-pre-login']);
         } else {
         this.transferService.setUser(this.user);
-        console.log(data);
-        console.log(this.user);
-        this.router.navigate(['/app-hospitals']);
+        this.router.navigate(['/app-user-home']);
         }
       });
     } else if (this.userLogin.value.role === 'admin') {
@@ -75,11 +70,8 @@ export class PreLoginComponent implements OnInit {
         this.user = data;
         if (this.user === null) {
           alert('Invalid credentials');
-          this.router.navigate(['/app-pre-login']);
         } else {
         this.transferService.setUser(this.user);
-        console.log(data);
-        console.log(this.user);
         this.router.navigate(['/app-hospitals']);
         }
       });
@@ -88,17 +80,13 @@ export class PreLoginComponent implements OnInit {
         this.user = data;
         if (this.user === null) {
           alert('Invalid credentials');
-          this.router.navigate(['/app-pre-login']);
         } else {
         this.transferService.setUser(this.user);
-        console.log(data);
-        console.log(this.user);
-        this.router.navigate(['/app-hospitals']);
+        this.router.navigate(['/app-doc-hospital']);
         }
       });
     } else {
       alert('Please select a role');
-      this.router.navigate(['/app-pre-login']);
     }
 
  }
@@ -111,27 +99,29 @@ export class PreLoginComponent implements OnInit {
       this.user.email = this.userSignUp.value.email;
       this.user.username = this.userSignUp.value.username;
       this.user.password = this.userSignUp.value.password;
-      console.log(this.user);
       if (this.user.firstName === '' || this.user.lastName === '' ||
           this.user.middleInit === '' || this.user.email === '' ||
           this.user.username === '' || this.user.password === '') {
             alert('Please fill in all fields');
             this.router.navigate(['/app-pre-login']);
       } else {
-        console.log(this.userSignUp.value);
-        console.log(this.user);
         $('.modal').removeClass('in');
         $('.modal').attr('aria-hidden', 'true');
         $('.modal').css('display', 'none');
         $('.modal-backdrop').remove();
         $('body').removeClass('modal-open');
         this.userService.save(this.user).subscribe(data => {
-          console.log('login as ' + data);
+          this.user = data;
+          if (this.user === null) {
+            alert('Username or email already exists');
+            this.router.navigate(['/app-pre-login']);
+          } else {
+          // this.role.role = 'Patient';
+          // this.user.role = this.role;
+          this.transferService.setUser(this.user);
+          this.router.navigate(['/app-hospitals']);
+          }
         });
-        this.role.role = 'Patient';
-        this.user.role = this.role;
-        this.transferService.setUser(this.user);
-        this.router.navigate(['/app-hospitals']);
     }
     } else {
       alert('Passwords don\'t match');

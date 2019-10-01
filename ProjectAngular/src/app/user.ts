@@ -1,7 +1,8 @@
 import { Role } from './role';
+import { Hospital } from './hospital/hospital';
 
 export class User {
-    Id: number;
+    id: number;
     firstName: string;
     lastName: string;
     username: string;
@@ -13,4 +14,5 @@ export class User {
     zip: number;
     number: number;
     role: Role;
+    hospital: Hospital;
 }

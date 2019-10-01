@@ -17,13 +17,13 @@ export class HealthRecord {
     exercise: boolean;
     livingWill: boolean;
     smoke: boolean;
-    smokefreq: string;
+    smokefreq: any;
     tobacco: boolean;
-    tobaccofreq: string;
+    tobaccofreq: any;
     alcohol: boolean;
-    alcoholfreq: string;
+    alcoholfreq: any;
     caffeinated: boolean;
-    caffeinatedfreq: string;
+    caffeinatedfreq: any;
 
     username: string;
 }

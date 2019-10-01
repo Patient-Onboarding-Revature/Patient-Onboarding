@@ -94,50 +94,52 @@ public class SessionController {
 	@SuppressWarnings("unchecked")
 	@PostMapping(value="/api/insertuser.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody Patient insertUser(@RequestBody Object stuff) {
-		System.out.println("in insert user");
-		
-		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
-		String firstname = ang.get("firstName");
-		String lastname = ang.get("lastName");
-		String username = ang.get("username");
-		String password = ang.get("password");
-		
-		System.out.println(firstname + " " + lastname+" "+username+" "+password);
-		
-		Patient p = new Patient(firstname,lastname,username,password);
-		UserRole role = userRoleDao.select(1);
-		p.setRole(role);
-		p.setMiddleInit('s');
-		p.setZip(0);
-		p.setNumber(0);
-		System.out.println(p);
-		patientDao.insert(p);
-		
-		Patient patient = patientDao.selectByUsername(username);
-		System.out.println(patient);
-		
-		return patient;
+		try {
+			
+			LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
+			String firstname = ang.get("firstName");
+			String lastname = ang.get("lastName");
+			Character middleinit = ang.get("middleInit").charAt(0);
+			String email = ang.get("email");
+			String username = ang.get("username");
+			String password = ang.get("password");
+			
+			Patient test = patientDao.selectByUsername(username);
+			Patient test2 = patientDao.selectByEmail(email);
+			if(test != null || test2 != null) {
+				throw new Exception();
+			}
+			
+			Patient p = new Patient(firstname,middleinit,lastname,username,password,email);
+			UserRole role = userRoleDao.select(1);
+			p.setRole(role);
+			p.setMiddleInit('s');
+			p.setZip(0);
+			p.setNumber(0);
+			patientDao.insert(p);
+			
+			Patient patient = patientDao.selectByUsername(username);
+			
+			return patient;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
     @PostMapping(value="/api/iduser.app", consumes = MediaType.ALL_VALUE)
     public @ResponseBody Patient findById(@RequestBody Object stuff) {
-        System.out.println("patient iduser");
         
         LinkedHashMap<String,Integer> ang = (LinkedHashMap<String,Integer>) stuff;
-        Integer Id = ang.get("Id");
-        System.out.println("iiid " + Id);
+        Integer id = ang.get("id");
         
-        Patient patient = patientDao.select(Id);
-        System.out.println(patient);
-        
+        Patient patient = patientDao.select(id);
         return patient;
     }
 	
 	@SuppressWarnings("unchecked")
 	@PostMapping(value="/api/insertrecord.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody HealthRecord insertRecord(@RequestBody Object stuff) {
-		System.out.println("in insert record");
 		
 		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 		String username = ang.get("username");
@@ -226,6 +228,7 @@ public class SessionController {
 			f4 = often;
 			break;
 		}
+		
 		if(patient.getRecord() != null) {
 			HealthRecord health = patient.getRecord();
 			health.setBloodpressure(b1);
@@ -263,8 +266,6 @@ public class SessionController {
 		patientDao.update(patient);
 		HealthRecord h2 = hrDao.selectByPatient(patient);
 		
-		System.out.println(h2);
-		
 		return h2;
 	}
 	
@@ -278,7 +279,6 @@ public class SessionController {
 		Patient patient = patientDao.selectByUsername(username);
 		
 		HealthRecord record = hrDao.selectByPatient(patient);
-		System.out.println(record);
 		
 		return record;
 	}
@@ -287,16 +287,15 @@ public class SessionController {
 	@PostMapping(value="/api/loginuser.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody Patient loginPatient(@RequestBody Object stuff) {
 		try {
-			System.out.println("patient login");
 			
 			LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 			String username = ang.get("username");
 			String password = ang.get("password");
 			
-			System.out.println(username+" "+password);
-			
 			Patient patient = patientDao.selectByUsername(username);
-			System.out.println(patient);
+			if(!password.equals(patient.getPassword())) {
+				throw new Exception();
+			}
 			
 			return patient;
 		} catch (Exception e) {
@@ -308,17 +307,15 @@ public class SessionController {
 	@PostMapping(value="/api/loginadmin.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody Admin loginAdmin(@RequestBody Object stuff) {
 		try {
-			System.out.println("iiidss  " + stuff);
-			System.out.println("login admin");
 			
 			LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 			String username = ang.get("username");
 			String password = ang.get("password");
 			
-			System.out.println(username+" "+password);
-			
 			Admin admin = adminDao.selectByUsername(username);
-			System.out.println(admin);
+			if(!password.equals(admin.getPassword())) {
+				throw new Exception();
+			}
 			
 			return admin;
 		} catch (Exception e) {
@@ -330,16 +327,15 @@ public class SessionController {
 	@PostMapping(value="/api/logindoctor.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody Doctor loginDoctor(@RequestBody Object stuff) {
 		try {
-			System.out.println("login doctor");
 			
 			LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 			String username = ang.get("username");
 			String password = ang.get("password");
 			
-			System.out.println(username+" "+password);
-			
 			Doctor doctor = doctorDao.selectByUsername(username);
-			System.out.println(doctor);
+			if(!password.equals(doctor.getPass())) {
+				throw new Exception();
+			}
 			
 			return doctor;
 		} catch (Exception e) {
@@ -350,7 +346,6 @@ public class SessionController {
 	@SuppressWarnings("unchecked")
 	@PostMapping(value="/api/updateuser.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody Patient update(@RequestBody Object stuff) {
-		System.out.println("updating patient");
 		
 		LinkedHashMap<String,String> ang = (LinkedHashMap<String,String>) stuff;
 		String firstName = ang.get("firstName");
@@ -365,7 +360,6 @@ public class SessionController {
 		String email = ang.get("email");
 		
 		Patient patient = patientDao.selectByUsername(username);
-		System.out.println(patient);
 		
 		patient.setFirstName(firstName);
 		patient.setLastName(lastName);
@@ -377,44 +371,36 @@ public class SessionController {
 		patient.setZip(zip);
 		patient.setNumber(number);
 		patient.setEmail(email);
-		System.out.println(patient);
 		
 		patientDao.update(patient);
 		
 		Patient p2 = patientDao.selectByUsername(username);
-		System.out.println(p2);
 		
 		return p2;
 	}
 	
 	@GetMapping(value="/api/selectuser.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody List<Patient> allPatients() {
-		System.out.println("in allPatients");
 		
 		List<Patient> patients = patientDao.selectAll();
-		System.out.println(patients);
 		
 		return patients;
 	}
 	
 	@GetMapping(value="/api/health.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody HealthRecord health() {
-		System.out.println("in health");
 		
 		Patient patient = patientDao.selectByUsername("user");
 		
 		HealthRecord record = hrDao.selectByPatient(patient);
-		System.out.println(record);
 		
 		return record;
 	}
 	
 	@GetMapping(value="/api/selecthospital.app", consumes = MediaType.ALL_VALUE)
 	public @ResponseBody List<Hospital> allHospitals() {
-		System.out.println("in allHospitals");
 		
 		List<Hospital> hospitals = hospitalDao.selectAll();
-		System.out.println(hospitals);
 		
 		return hospitals;
 	}
@@ -422,15 +408,55 @@ public class SessionController {
 	@SuppressWarnings("unchecked")
     @PostMapping(value="/api/selecthospitalid.app", consumes = MediaType.ALL_VALUE)
     public @ResponseBody Hospital findByHospId(@RequestBody Object stuff) {
-        System.out.println("hospital iduser");
         
         LinkedHashMap<String,Integer> ang = (LinkedHashMap<String,Integer>) stuff;
         Integer id = ang.get("id");
         
         Hospital hospital = hospitalDao.select(id);
-        System.out.println(hospital);
         
         return hospital;
+    }
+	
+	@SuppressWarnings("unchecked")
+    @PostMapping(value="/api/hospitaldocs.app", consumes = MediaType.ALL_VALUE)
+    public @ResponseBody List<Doctor> getHospitalDocs(@RequestBody Object stuff) {
+        
+        LinkedHashMap<String,Integer> ang = (LinkedHashMap<String,Integer>) stuff;
+        Integer id = ang.get("id");
+        
+        Hospital hospital = hospitalDao.select(id);
+        
+        return hospital.getDoctors();
+    }
+	
+	@SuppressWarnings("unchecked")
+    @PostMapping(value="/api/doctorpatients.app", consumes = MediaType.ALL_VALUE)
+    public @ResponseBody List<Patient> getDocPatients(@RequestBody Object stuff) {
+        
+        LinkedHashMap<String,Integer> ang = (LinkedHashMap<String,Integer>) stuff;
+        Integer id = ang.get("id");
+        
+        Doctor doctor = doctorDao.select(id);
+        
+        return doctor.getPatients();
+    }
+	
+	@SuppressWarnings("unchecked")
+    @PostMapping(value="/api/setdoctorpatient.app", consumes = MediaType.ALL_VALUE)
+    public @ResponseBody String setDocPatient(@RequestBody Object stuff) {
+        
+        LinkedHashMap<String,Integer> ang = (LinkedHashMap<String,Integer>) stuff;
+        Integer did = ang.get("docid");
+        Integer pid = ang.get("patiendid");
+        
+        Doctor doctor = doctorDao.select(did);
+        Patient patient = patientDao.select(pid);
+        List<Doctor> doctors = patient.getDoctors();
+        doctors.add(doctor);
+        patient.setDoctors(doctors);
+        patientDao.update(patient);
+        
+        return null;
     }
 	
 //	@GetMapping(value="/api/selecthosp.app", consumes = MediaType.ALL_VALUE)

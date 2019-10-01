@@ -7,6 +7,7 @@ import { User } from '../user';
 import { UserService } from '../user/user.service';
 import { TransferService } from '../transfer/transfer.service';
 import { HealthRecord } from '../user-health-record/healthrecord';
+import { Frequency } from '../frequency';
 
 declare var $: any;
 
@@ -20,11 +21,38 @@ export class PatientInfoComponent implements OnInit {
   currentPatient = 'no name';
   curPatient: User;
   user: User;
-  img = 'assets/user${this.curPatient}.jpeg';
+  img = 'assets/user2.jpeg';
   healthRecord = new HealthRecord();
 
-  constructor(private route: ActivatedRoute, private userService: UserService) {
+  constructor(private route: ActivatedRoute, private userService: UserService, private freq: Frequency) {
                 this.user = new User();
+                const bool = false;
+                this.healthRecord.bloodpressure = bool;
+                this.healthRecord.heartDisease = bool;
+                this.healthRecord.stroke = bool;
+                this.healthRecord.diabetes = bool;
+                this.healthRecord.digestive = bool;
+                this.healthRecord.lung = bool;
+                this.healthRecord.visual = bool;
+                this.healthRecord.joint = bool;
+                this.healthRecord.depression = bool;
+                this.healthRecord.cancer = bool;
+                this.healthRecord.liver = bool;
+                this.healthRecord.thyroid = bool;
+                this.healthRecord.hearing = bool;
+                this.healthRecord.drugs = bool;
+                this.healthRecord.sexually = bool;
+                this.healthRecord.exercise = bool;
+                this.healthRecord.livingWill = bool;
+                this.healthRecord.smoke = bool;
+                this.healthRecord.tobacco = bool;
+                this.healthRecord.alcohol = bool;
+                this.healthRecord.caffeinated = bool;
+                this.freq.frequency = 'empty';
+                this.healthRecord.smokefreq = this.freq;
+                this.healthRecord.tobaccofreq = this.freq;
+                this.healthRecord.caffeinatedfreq = this.freq;
+                this.healthRecord.alcoholfreq = this.freq;
                }
 
   userEdit = new FormGroup({
@@ -48,12 +76,14 @@ export class PatientInfoComponent implements OnInit {
 
   ngOnInit() {
     this.currentPatient = this.route.snapshot.paramMap.get('userId');
-    this.user.Id = parseInt(this.currentPatient, 10);
+    this.user.id = parseInt(this.currentPatient, 10);
     this.userService.findByPatientId(this.user).subscribe(data => {
       this.curPatient = data;
+      this.img = `assets/user${this.curPatient.username}.jpeg`;
       this.userService.getHealth(this.curPatient).subscribe(record => {
-        this.healthRecord = record;
-        console.log('from user page ' + this.healthRecord);
+        if (record !== null) {
+          this.healthRecord = record;
+        }
       });
       return this.curPatient;
     });
@@ -65,15 +95,12 @@ export class PatientInfoComponent implements OnInit {
     this.curPatient.lastName = this.userEdit.value.lastname;
    // this.user.username = this.userEdit.value.username;
    // this.user.password = this.userEdit.value.password;
-    console.log(this.userEdit.value);
-    console.log(this.curPatient);
     $('.modal').removeClass('in');
     $('.modal').attr('aria-hidden', 'true');
     $('.modal').css('display', 'none');
     $('.modal-backdrop').remove();
     $('body').removeClass('modal-open');
     this.userService.update(this.user).subscribe(data => {
-      console.log(data);
     });
   }
 }

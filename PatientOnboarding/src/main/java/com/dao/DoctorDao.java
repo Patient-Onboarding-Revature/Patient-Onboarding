@@ -49,5 +49,11 @@ public class DoctorDao {
 		return list.get(0);
 		
 	}
+	
+	public void update(Doctor obj) {
+		
+		sf.getCurrentSession().merge(obj);
+		
+	}
 
 }

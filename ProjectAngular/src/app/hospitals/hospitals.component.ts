@@ -14,7 +14,6 @@ export class HospitalsComponent implements OnInit {
   constructor(private hospitalService: HospitalService) {
     this.hospitalService.selectAll().subscribe(data => {
       this.hospitals = data;
-      console.log(this.hospitals);
     });
     this.hospitals = this.hospitals;
 }

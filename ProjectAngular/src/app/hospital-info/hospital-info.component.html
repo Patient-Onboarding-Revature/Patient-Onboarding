@@ -10,11 +10,18 @@
         </ng-template> -->
         <div class="col-4"></div>
         <div class="col-8 bio">
-            <h5 class="card-title">{{currentHospital.name}}</h5>
+            <h4 class="card-title">{{currentHospital.name}}</h4>
             <p class="card-text"><b>address: </b>{{currentHospital.address}} {{currentHospital.state}}
                 {{currentHospital.zip}}</p>
-            <p><b>About Us</b>
-                <br>
+            <h5>Our docotors:</h5>
+            <ul *ngFor="let doc of doctors" style="list-style-type: none">
+                <li><i class="material-icons">contacts</i> 
+                    {{doc.firstName}} {{doc.lastName}}; speciality: {{doc.specialty}}
+                <button (click)="usertodoc(doc.id)" class="btn btn-success">Request an appointment</button></li>
+                <hr>
+            </ul>
+            <h5>About Us</h5>
+            <p>
                 {{currentHospital.name}} has been serving the South Florida community since 1994
                 and is a quality oriented private Outpatient Rehabilitation facility with offices in Miami, Florida.
                 <br>
@@ -24,6 +31,7 @@
                 Our facility is well equipped and our team of professionals is experienced, friendly, knowledgeable and
                 dedicated to meet your needs and exceed your expectations.
             </p>
+
         </div>
     </div>
 </div>

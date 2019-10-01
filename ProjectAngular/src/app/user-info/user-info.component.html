@@ -3,20 +3,17 @@
 <div class="container">
     <div class="row">
             <!-- <img class="image" src="assets/user{{user.id}}.jpeg"> -->
-            <img class="image" src="assets/mask.webp">
-        <div class="col-5"></div>
+            <!-- <img class="image" src="assets/mask.webp"> -->
+        <div class="col-5"><i class="material-icons" style="font-size: 450px">person_outline</i></div>
         <div class="col-5 bio">
             <h5>{{user.firstName}} {{user.lastName}}</h5>
             <!-- <p><b>age: </b>22</p> -->
             <p><b>username: </b>{{user.username}}</p>
             <p><b>address: </b>{{user.address}}</p>
+            <p><b>state: </b>{{user.state}}</p>
+            <p><b>zipcode: </b>{{user.zip}}</p>
             <p><b>contact number: </b>{{user.number}}</p>
             <p><b>contact email: </b>{{user.email}}</p>
-            <p><b>sex: </b>F</p>
-            <p><b>status: </b>single</p>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officiis sapiente animi tenetur ab
-                cumque esse est sed, ex excepturi magnam repudiandae iusto nam nemo mollitia odio porro eius illum!</p>
-
             <!-- Button trigger modal -->
             <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#userModal">
                 Edit information

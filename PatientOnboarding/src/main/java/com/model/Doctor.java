@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Doctor {
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
-	@Column(name="username", nullable=false)
+	@Column(name="username", nullable=false, unique=true)
 	private String username;
 	
 	@Column(name="password", nullable=false)
@@ -43,7 +44,7 @@ public class Doctor {
 	@ManyToOne(cascade=CascadeType.ALL)
 	private Hospital hospital;
 	
-	@ManyToMany(cascade=CascadeType.ALL, mappedBy="doctors")
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="doctors", fetch = FetchType.EAGER)
 	private List<Patient> patients;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -150,7 +151,7 @@ public class Doctor {
 	}
 	
 	public Doctor(String firstName, String lastName, String username, String password, String specialty,
-			UserRole role) {
+			UserRole role, Hospital hospital) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -158,6 +159,7 @@ public class Doctor {
 		this.password = password;
 		this.specialty = specialty;
 		this.role = role;
+		this.hospital = hospital;
 	}
 
 	public Doctor() {}

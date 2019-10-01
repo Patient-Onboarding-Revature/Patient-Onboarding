@@ -34,31 +34,37 @@ export class UserInfoComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.transferService.getUser();
-    console.log(this.user);
     this.userService.getHealth(this.user).subscribe(data => {
-      this.healthRecord = data;
-      console.log('from user ' + this.healthRecord);
+      if (data != null) {
+        this.healthRecord = data;
+      }
     });
 
   }
 
   edit(): void {
-    this.user.firstName = this.userEdit.value.firstname;
-    this.user.lastName = this.userEdit.value.lastname;
-    this.user.address = this.userEdit.value.address;
-    this.user.email = this.userEdit.value.email;
-    this.user.middleInit = this.userEdit.value.middleinit;
-    this.user.state = this.userEdit.value.state;
-    this.user.zip = this.userEdit.value.zip;
-    this.user.number = this.userEdit.value.number;
-    console.log(this.user);
-    $('.modal').removeClass('in');
-    $('.modal').attr('aria-hidden', 'true');
-    $('.modal').css('display', 'none');
-    $('.modal-backdrop').remove();
-    $('body').removeClass('modal-open');
-    this.userService.update(this.user).subscribe(data => {
-      console.log(data);
-    });
+    if (this.userEdit.value.firstname === '') {
+      alert('First name field must be filled');
+    } else if (this.userEdit.value.lastname === '') {
+      alert('Last name field must be filled');
+    } else if (this.userEdit.value.email === '') {
+      alert('Email field must be filled');
+    } else {
+      this.user.firstName = this.userEdit.value.firstname;
+      this.user.lastName = this.userEdit.value.lastname;
+      this.user.address = this.userEdit.value.address;
+      this.user.email = this.userEdit.value.email;
+      this.user.middleInit = this.userEdit.value.middleinit;
+      this.user.state = this.userEdit.value.state;
+      this.user.zip = this.userEdit.value.zip;
+      this.user.number = this.userEdit.value.number;
+      $('.modal').removeClass('in');
+      $('.modal').attr('aria-hidden', 'true');
+      $('.modal').css('display', 'none');
+      $('.modal-backdrop').remove();
+      $('body').removeClass('modal-open');
+      this.userService.update(this.user).subscribe(data => {
+      });
+    }
   }
 }

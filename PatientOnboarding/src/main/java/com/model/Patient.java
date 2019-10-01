@@ -36,7 +36,7 @@ public class Patient {
 	@Column(name="last_name", nullable=false)
 	private String lastName;
 	
-	@Column(name="username", nullable=false)
+	@Column(name="username", nullable=false, unique=true)
 	private String username;
 	
 	@Column(name="password", nullable=false)
@@ -101,7 +101,7 @@ public class Patient {
 	@JoinColumn(name="health_record")
 	private HealthRecord record;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Doctor> doctors;
 
 	public int getId() {
@@ -302,6 +302,17 @@ public class Patient {
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
+	}
+
+	public Patient(String firstName, Character middleInit, String lastName, String username, String password,
+			String email) {
+		super();
+		this.firstName = firstName;
+		this.middleInit = middleInit;
+		this.lastName = lastName;
+		this.username = username;
+		this.password = password;
+		this.email = email;
 	}
 
 	public Patient() {

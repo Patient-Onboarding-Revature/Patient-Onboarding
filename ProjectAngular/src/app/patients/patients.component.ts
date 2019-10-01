@@ -14,8 +14,6 @@ export class PatientsComponent {
   constructor(private userService: UserService) {
       this.userService.selectAll().subscribe(data => {
         this.patients = data;
-        console.log(data);
-        console.log(this.patients);
       });
       this.patients = this.patients;
   }

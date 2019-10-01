@@ -17,6 +17,9 @@ import { TransferService } from './transfer/transfer.service';
 import { User } from './user';
 import { UserHealthRecordComponent } from './user-health-record/user-health-record.component';
 import { HealthRecord } from './user-health-record/healthrecord';
+import { DocPatientsComponent } from './doc-patients/doc-patients.component';
+import { DocHospitalComponent } from './doc-hospital/doc-hospital.component';
+import { Frequency } from './frequency';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { HealthRecord } from './user-health-record/healthrecord';
     NavbarComponent,
     PatientsComponent,
     UserInfoComponent,
-    UserHealthRecordComponent
+    UserHealthRecordComponent,
+    DocPatientsComponent,
+    DocHospitalComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,9 @@ import { HealthRecord } from './user-health-record/healthrecord';
     HttpClientModule,
     RouterModule.forRoot([
       {path: 'app-pre-login', component: PreLoginComponent},
-      {path: 'user_home', component: UserHomeComponent},
+      {path: 'app-user-home', component: UserHomeComponent},
+      {path: 'app-doc-patients', component: DocPatientsComponent},
+      {path: 'app-doc-hospital', component: DocHospitalComponent},
       {path: 'app-patients', component: PatientsComponent},
       {path: 'app-hospitals', component: HospitalsComponent},
       {path: 'app-hospital-info/:id', component: HospitalInfoComponent},
@@ -48,7 +55,7 @@ import { HealthRecord } from './user-health-record/healthrecord';
       {path: '**', redirectTo: 'app-pre-login', pathMatch: 'full'}
     ])
   ],
-  providers: [UserService, PatientsComponent, UserInfoComponent, TransferService, User, HealthRecord],
+  providers: [UserService, PatientsComponent, UserInfoComponent, TransferService, User, HealthRecord, Frequency],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

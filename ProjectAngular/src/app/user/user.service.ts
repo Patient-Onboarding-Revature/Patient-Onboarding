@@ -18,6 +18,7 @@ export class UserService {
   private urlPatientId: string;
   private urlHealthRecord: string;
   private urlGetHealth: string;
+  private urlGetPatients: string;
 
   constructor(private http: HttpClient) {
     this.urlsave = 'http://34.68.184.228/PatientOnboarding/api/insertuser.app';
@@ -28,11 +29,12 @@ export class UserService {
     this.urlDoctorlogin = 'http://34.68.184.228/PatientOnboarding/api/logindoctor.app';
     this.urlPatientId = 'http://34.68.184.228/PatientOnboarding/api/iduser.app';
     this.urlHealthRecord = 'http://34.68.184.228/PatientOnboarding/api/insertrecord.app';
-    this. urlGetHealth = 'http://34.68.184.228/PatientOnboarding/api/getrecord.app';
+    this.urlGetHealth = 'http://34.68.184.228/PatientOnboarding/api/getrecord.app';
+    this.urlGetPatients = 'http://34.68.184.228/PatientOnboarding/api/doctorpatients.app';
   }
 
-  public save(user: User): Observable<string[]> {
-    return this.http.post<string[]>(this.urlsave, user);
+  public save(user: User): Observable<User> {
+    return this.http.post<User>(this.urlsave, user);
   }
 
   public update(user: User): Observable<string[]> {
@@ -65,5 +67,9 @@ export class UserService {
 
   public getHealth(user: User): Observable<HealthRecord> {
     return this.http.post<HealthRecord>(this.urlGetHealth, user);
+  }
+
+  public selectDocsAll(user: User): Observable<User[]> {
+    return this.http.post<User[]>(this.urlGetPatients, user);
   }
 }

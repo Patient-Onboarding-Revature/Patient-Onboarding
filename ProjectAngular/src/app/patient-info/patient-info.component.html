@@ -2,22 +2,17 @@
     <app-navbar></app-navbar>
     <div class="container">
         <div class="row">
-            <img class="image" src="assets/mask.webp">
+            <!-- <img class="image" src="assets/mask.webp"> -->
             <!-- <img class="image" [src]="img"> -->
-            <div class="col-5"></div>
+            <div class="col-5"><i class="material-icons" style="font-size: 450px">person_outline</i></div>
             <div class="col-5 bio">
                 <h5>{{curPatient.lastName}} {{curPatient.firstName}}</h5>
-                <p><b>age: </b>22</p>
                 <p><b>username: </b>{{curPatient.username}}</p>
                 <p><b>address: </b>{{curPatient.address}}</p>
+                <p><b>state: </b>{{curPatient.state}}</p>
+                <p><b>zip: </b>{{curPatient.zip}}</p>
                 <p><b>contact number: </b>{{curPatient.number}}</p>
                 <p><b>contact email: </b>{{curPatient.email}}</p>
-                <p><b>sex: </b>F</p>
-                <p><b>status: </b>single</p>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam officiis sapiente animi tenetur ab
-                    cumque esse est sed, ex excepturi magnam repudiandae iusto nam nemo mollitia odio porro eius illum!
-                </p>
-
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#userModal">
                     Health Record 
@@ -114,34 +109,34 @@
                                                 <p><b>Do you smoke?</b></p>
                                                 <p *ngIf="healthRecord.smoke"><i>Current record: <b>yes</b></i></p>
                                                 <p *ngIf="!healthRecord.smoke"><i>Current record: <b>no</b></i></p>
-                                                <!-- <p *ngIf="!healthRecord.smokefreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.smokefreq.frequency === 'empty'"><i>Frequency: <b>empty</b></i></p>
                                                 <p *ngIf="healthRecord.smokefreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
                                                 <p *ngIf="healthRecord.smokefreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
-                                                <p *ngIf="healthRecord.smokefreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <p *ngIf="healthRecord.smokefreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p>
                                                 <hr>
                                                 <p><b>Do you use chewing tobacco or snuff?</b></p>
                                                 <p *ngIf="healthRecord.tobacco"><i>Current record: <b>yes</b></i></p>
                                                 <p *ngIf="!healthRecord.tobacco"><i>Current record: <b>no</b></i></p>
-                                                <!-- <p *ngIf="!healthRecord.tobaccofreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'empty'"><i>Frequency: <b>empty</b></i></p>
                                                 <p *ngIf="healthRecord.tobaccofreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
                                                 <p *ngIf="healthRecord.tobaccofreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
-                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <p *ngIf="healthRecord.tobaccofreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p>
                                                 <hr>
                                                 <p><b>Do you drink alcohol?</b></p>
                                                 <p *ngIf="healthRecord.alcohol"><i>Current record: <b>yes</b></i></p>
                                                 <p *ngIf="!healthRecord.alcohol"><i>Current record: <b>no</b></i></p>
-                                                <!-- <p *ngIf="!healthRecord.alcoholfreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'empty'"><i>Frequency: <b>empty</b></i></p>
                                                 <p *ngIf="healthRecord.alcoholfreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
                                                 <p *ngIf="healthRecord.alcoholfreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
-                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <p *ngIf="healthRecord.alcoholfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p>
                                                 <hr>
                                                 <p><b>Do you drink caffeinated beverages?</b></p>
                                                 <p *ngIf="healthRecord.caffeinated"><i>Current record: <b>yes</b></i></p>
                                                 <p *ngIf="!healthRecord.caffeinated"><i>Current record: <b>no</b></i></p>
-                                                <!-- <p *ngIf="!healthRecord.caffeinatedfreq.frequency"><i>Frequency: <b>never</b></i></p>
+                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'empty'"><i>Frequency: <b>empty</b></i></p>
                                                 <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Never'"><i>Frequency: <b>never</b></i></p>
                                                 <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Sometimes'"><i>Frequency: <b>sometimes</b></i></p>
-                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p> -->
+                                                <p *ngIf="healthRecord.caffeinatedfreq.frequency === 'Often'"><i>Frequency: <b>often</b></i></p>
                                                 <hr>
                                         </div>
                                     </div>

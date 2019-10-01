@@ -43,15 +43,30 @@ public class PatientDao {
 	
 	public Patient selectByUsername(String username) {
 		
-		List<Patient> list = sf.getCurrentSession().createQuery("from Patient where username='"+username+"'", Patient.class).list();
-		
-		return list.get(0);
+		try {
+			List<Patient> list = sf.getCurrentSession().createQuery("from Patient where username='"+username+"'", Patient.class).list();
+
+			return list.get(0);
+		} catch (Exception e) {
+			return null;
+		}
 		
 	}
 	
 	public void update(Patient obj) {
 		
 		sf.getCurrentSession().merge(obj);
+		
+	}
+	
+	public Patient selectByEmail(String email) {
+		try {
+			List<Patient> list = sf.getCurrentSession().createQuery("from Patient where email='"+email+"'", Patient.class).list();
+			
+			return list.get(0);
+		} catch (Exception e) {
+			return null;
+		}
 		
 	}
 	
