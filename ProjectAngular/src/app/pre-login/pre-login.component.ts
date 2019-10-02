@@ -20,12 +20,23 @@ declare var $: any;
 export class PreLoginComponent implements OnInit {
 
  user: User;
+ test: User;
  role: Role;
 
   constructor(private router: Router, private userService: UserService, private userPage: UserInfoComponent,
               private transferService: TransferService) {
       this.user = new User();
       this.role = new Role();
+      this.test = new User();
+      this.test = this.transferService.getUser();
+      if (this.test === undefined) {
+      } else if (this.test.role.role === 'Patient') {
+        this.router.navigate(['/app-user-home']);
+      } else if (this.test.role.role === 'Admin') {
+        this.router.navigate(['/app-hospitals']);
+      } else if (this.test.role.role === 'Doctor') {
+        this.router.navigate(['/app-doc-hospital']);
+      }
    }
 
   userSignUp = new FormGroup({
