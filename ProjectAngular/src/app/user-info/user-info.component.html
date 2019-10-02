@@ -4,7 +4,10 @@
     <div class="row">
             <!-- <img class="image" src="assets/user{{user.id}}.jpeg"> -->
             <!-- <img class="image" src="assets/mask.webp"> -->
-        <div class="col-5"><i class="material-icons" style="font-size: 450px">person_outline</i></div>
+            <img  class="image" src="assets/user{{user.id}}.jpeg"
+      onError="this.src='assets/def.jpg';" />
+        <div class="col-5"></div>
+        <!-- <i class="material-icons" style="font-size: 450px">person_outline</i> -->
         <div class="col-5 bio">
             <h5>{{user.firstName}} {{user.lastName}}</h5>
             <!-- <p><b>age: </b>22</p> -->
@@ -151,4 +154,6 @@
         </div>
     </div>
 </div>
+<div class="row" style="height: 100px;"></div>
+<!-- <app-footer></app-footer> -->
 </div>

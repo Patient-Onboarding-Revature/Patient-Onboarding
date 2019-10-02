@@ -29,6 +29,7 @@ export class HospitalInfoComponent implements OnInit {
   ngOnInit() {
     this.currentHospitalId = this.route.snapshot.paramMap.get('id');
     this.hospital.id = parseInt(this.currentHospitalId, 10);
+    this.user = this.transferService.getUser();
     this.hospService.findByHospId(this.hospital).subscribe(data => {
       this.currentHospital = data;
       return this.currentHospital;

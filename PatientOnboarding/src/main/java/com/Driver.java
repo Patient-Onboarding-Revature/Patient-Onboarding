@@ -142,29 +142,68 @@ public class Driver {
 		roleDao.insert(role2);
 		roleDao.insert(role3);
 		
-		Hospital h1 = new Hospital("THIS IS A HOSPITAL", "THIS IS THE HOSPITAL ADDRESS", "THIS IS THE HOSPITAL STATE", 11111);
+		Hospital h1 = new Hospital("Newlife Hospital", "67 Constitution Dr.", "Reynoldsburg, OH", 43068);
 		List<Doctor> h1docs = new ArrayList<>();
-		Hospital h2 = new Hospital("hospital2","h2 address","h2 state", 22222);
+		Hospital h2 = new Hospital("Care & Cure Hospital","828 Depot Court","Hilliard, OH", 43062);
 		List<Doctor> h2docs = new ArrayList<>();
+		Hospital h3 = new Hospital("Medwin Cares", "51 Sunbeam Dr.", "Elizabethtown, PA", 17022);
+		List<Doctor> h3docs = new ArrayList<>();
+		Hospital h4 = new Hospital("Rejuvenate","502 W. Fairway St.","Canonsburg, PA", 15317);
+		List<Doctor> h4docs = new ArrayList<>();
+		Hospital h5 = new Hospital("Mankind Medicare", "1 Bayberry Drive", "Aiken, SC", 29803);
+		List<Doctor> h5docs = new ArrayList<>();
 		
 		UserRole adminRole = roleDao.select(3);
 		UserRole docRole = roleDao.select(2);
 		
-		Admin a1 = new Admin(adminRole,"someadmin", "somelastname", "admin", "pass");
+		Admin a1 = new Admin(adminRole,"Aditya", "Nolan", "panicjustice", "newjax");
+		Admin a2 = new Admin(adminRole,"Aimee", "Kane", "bikezany", "cheelriverside");
+		Admin a3 = new Admin(adminRole,"Abigail", "Salazar", "noeabject", "ussafe");
+		Admin a4 = new Admin(adminRole,"Aliya", "Carlson", "oldtall", "zodiacalvegetable");
 		
 		adminDao.insert(a1);
+		adminDao.insert(a2);
+		adminDao.insert(a3);
+		adminDao.insert(a4);
 		
-		Doctor d1 = new Doctor("doc","doclastname","boo","pass","SPECIALTY",docRole,h1);
+		Doctor d1 = new Doctor("Jamarcus","Randall","clothingshrug","realrowdy","Addiction",docRole,h1);
 		h1docs.add(d1);
-		Doctor d2 = new Doctor("somedoc","doc","doc","pass","eyes",docRole,h2);
+		Doctor d2 = new Doctor("Mikayla","Whitaker","sunresale","sporesfall","Orthotics",docRole,h2);
 		h2docs.add(d2);
-		Doctor d3 = new Doctor("docs3","doc3last","ugh","pass","oof",docRole,h1);
+		Doctor d3 = new Doctor("Kasey","Gross","boxlikerose","heelwhoosh","Pediatrics",docRole,h1);
 		h1docs.add(d3);
+		Doctor d4 = new Doctor("Cecelia","Simpson","Technography","scrumpy","Allergy",docRole,h3);
+		h3docs.add(d4);
+		Doctor d5 = new Doctor("Selah","Hebert","Malliot","Abderian","Emergency Medicine",docRole,h4);
+		h4docs.add(d5);
+		Doctor d6 = new Doctor("Stephanie","Khan","telpherage","lobcock","Family",docRole,h5);
+		h5docs.add(d6);
+		Doctor d7 = new Doctor("Dominique","Eaton","pannose","nephalism","Sports Medicine",docRole,h4);
+		h4docs.add(d7);
+		Doctor d8 = new Doctor("Kymani","Tucker","abattoir","tubicornous","General Surgery",docRole,h2);
+		h2docs.add(d8);
+		Doctor d9 = new Doctor("Yareli","Maynard","filoselle","ametropia","Radiologist",docRole,h3);
+		h3docs.add(d9);
+		Doctor d10 = new Doctor("Ean","Krueger","firkinja5580","radiology","Family",docRole,h5);
+		h5docs.add(d10);
+		Doctor d11 = new Doctor("Taniyah","Morton","doldrums","hoosegow","Geriatric",docRole,h2);
+		h2docs.add(d11);
+		Doctor d12 = new Doctor("Elliot","Hendricks","luminous","gimbals","Family",docRole,h1);
+		h1docs.add(d12);
+		Doctor d13 = new Doctor("Evelyn","Watts","cribriform","postface","Family",docRole,h2);
+		h2docs.add(d13);
+		
 		h1.setDoctors(h1docs);
 		h2.setDoctors(h2docs);
+		h3.setDoctors(h3docs);
+		h4.setDoctors(h4docs);
+		h5.setDoctors(h5docs);
 		
 		hospitalDao.insert(h1);
 		hospitalDao.insert(h2);
+		hospitalDao.insert(h3);
+		hospitalDao.insert(h4);
+		hospitalDao.insert(h5);
 		
 		
 //		Salutation s = SalutationDao.select(1);

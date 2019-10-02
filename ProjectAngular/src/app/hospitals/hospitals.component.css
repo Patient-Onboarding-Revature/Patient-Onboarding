@@ -8,7 +8,7 @@
 }
 
 #maindiv {
-    height: 100vh;
+    height: 100%;
     background-image: url(https://wallpaperplay.com/walls/full/d/8/b/329997.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -17,7 +17,6 @@
 .btn-success {
     color: #373f39;
     border-color: #3d453e;
-    margin: 0px 16px;
     width: 100px;
     background-color: #d5e1d3;
 }

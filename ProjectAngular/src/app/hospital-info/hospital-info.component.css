@@ -17,15 +17,16 @@
     text-align: justify;
     font-size: 17px;
     background-color: hsla(0,0%,100%,.87);
-    padding: 20px 20px 5px;
+    padding: 20px 20px;
     box-shadow: 0 0 10px -3px #000;
     color: #000;
     font-weight: 200;
     margin-top: 200px;
+    margin-bottom: 40px;
 }
 
 #maindiv {
-    height: 100vh;
+    height: 100%;
     background-image: url(https://wallpaperplay.com/walls/full/d/8/b/329997.jpg);
     background-size: cover;
     background-repeat: no-repeat;

@@ -3,7 +3,9 @@
 <div class="container">
     <div class="row">
         <!-- <div *ngIf="assets/currentHospital.id.jpeg; else elseTamp"> -->
-            <img class="image" src="assets/{{currentHospital.id}}.jpeg">
+            <!-- <img class="image" src="assets/{{currentHospital.id}}.jpeg"> -->
+            <img  class="image" src="assets/{{currentHospital.id}}.jpeg"
+      onError="this.src='assets/1.jpeg';" />
         <!-- </div>
         <ng-template #elseTamp>
             <img class="image" src="assets/3.jpeg">
@@ -14,11 +16,14 @@
             <p class="card-text"><b>address: </b>{{currentHospital.address}} {{currentHospital.state}}
                 {{currentHospital.zip}}</p>
             <h5>Our docotors:</h5>
-            <ul *ngFor="let doc of doctors" style="list-style-type: none">
-                <li><i class="material-icons">contacts</i> 
-                    {{doc.firstName}} {{doc.lastName}}; speciality: {{doc.specialty}}
-                <button (click)="usertodoc(doc.id)" class="btn btn-success">Request an appointment</button></li>
+            <ul >
+                <li *ngFor="let doc of doctors" style="list-style-type: none"><i class="material-icons">account_box</i> 
+                    <p style="display: inline-block; padding-left: 10px;">{{doc.firstName}} {{doc.lastName}}; speciality: {{doc.specialty}}</p>
+                <span *ngIf="user.role.role === 'Patient'" style="float: right; margin-right: 15px;">
+                <button  (click)="usertodoc(doc.id)" class="btn btn-success">Request an appointment</button>
+                </span>
                 <hr>
+            </li>
             </ul>
             <h5>About Us</h5>
             <p>
@@ -35,4 +40,5 @@
         </div>
     </div>
 </div>
+<!-- <app-footer></app-footer> -->
 </div>

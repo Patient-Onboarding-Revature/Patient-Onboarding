@@ -20,6 +20,7 @@ import { HealthRecord } from './user-health-record/healthrecord';
 import { DocPatientsComponent } from './doc-patients/doc-patients.component';
 import { DocHospitalComponent } from './doc-hospital/doc-hospital.component';
 import { Frequency } from './frequency';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { Frequency } from './frequency';
     UserInfoComponent,
     UserHealthRecordComponent,
     DocPatientsComponent,
-    DocHospitalComponent
+    DocHospitalComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
