@@ -15,7 +15,7 @@
             <h4 class="card-title">{{currentHospital.name}}</h4>
             <p class="card-text"><b>address: </b>{{currentHospital.address}} {{currentHospital.state}}
                 {{currentHospital.zip}}</p>
-            <h5>Our docotors:</h5>
+            <h5>Our doctors:</h5>
             <ul >
                 <li *ngFor="let doc of doctors" style="list-style-type: none"><i class="material-icons">account_box</i> 
                     <p style="display: inline-block; padding-left: 10px;">{{doc.firstName}} {{doc.lastName}}; speciality: {{doc.specialty}}</p>
