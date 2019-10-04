@@ -21,16 +21,16 @@ export class UserService {
   private urlGetPatients: string;
 
   constructor(private http: HttpClient) {
-    this.urlsave = 'http://localhost:9009/PatientOnboarding/api/insertuser.app';
-    this.urlupdate = 'http://localhost:9009/PatientOnboarding/api/updateuser.app';
-    this.urlselect = 'http://localhost:9009/PatientOnboarding/api/selectuser.app';
-    this.urlPatientlogin = 'http://localhost:9009/PatientOnboarding/api/loginuser.app';
-    this.urlAdminlogin = 'http://localhost:9009/PatientOnboarding/api/loginadmin.app';
-    this.urlDoctorlogin = 'http://localhost:9009/PatientOnboarding/api/logindoctor.app';
-    this.urlPatientId = 'http://localhost:9009/PatientOnboarding/api/iduser.app';
-    this.urlHealthRecord = 'http://localhost:9009/PatientOnboarding/api/insertrecord.app';
-    this.urlGetHealth = 'http://localhost:9009/PatientOnboarding/api/getrecord.app';
-    this.urlGetPatients = 'http://localhost:9009/PatientOnboarding/api/doctorpatients.app';
+    this.urlsave = 'http://34.68.184.228/PatientOnboarding/api/insertuser.app';
+    this.urlupdate = 'http://34.68.184.228/PatientOnboarding/api/updateuser.app';
+    this.urlselect = 'http://34.68.184.228/PatientOnboarding/api/selectuser.app';
+    this.urlPatientlogin = 'http://34.68.184.228/PatientOnboarding/api/loginuser.app';
+    this.urlAdminlogin = 'http://34.68.184.228/PatientOnboarding/api/loginadmin.app';
+    this.urlDoctorlogin = 'http://34.68.184.228/PatientOnboarding/api/logindoctor.app';
+    this.urlPatientId = 'http://34.68.184.228/PatientOnboarding/api/iduser.app';
+    this.urlHealthRecord = 'http://34.68.184.228/PatientOnboarding/api/insertrecord.app';
+    this.urlGetHealth = 'http://34.68.184.228/PatientOnboarding/api/getrecord.app';
+    this.urlGetPatients = 'http://34.68.184.228/PatientOnboarding/api/doctorpatients.app';
   }
 
   public save(user: User): Observable<User> {
